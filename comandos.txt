@@ -1,0 +1,5 @@
+para poder funcionar, instalar pacote angular:
+* npm install -g @angular/cli
+
+criar novo projeto:
+ng new <project-name>
