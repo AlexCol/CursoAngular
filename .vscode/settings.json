@@ -4,4 +4,7 @@
     "source.removeUnusedImports": "explicit"
     //"source.organizeImports": "explicit"
   },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
 }

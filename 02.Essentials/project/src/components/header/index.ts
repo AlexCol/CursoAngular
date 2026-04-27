@@ -1,8 +1,11 @@
 import { Component } from "@angular/core";
+import { headerStyles } from "./header.styles";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.html',
-  styleUrl: './header.css',
+  //styleUrls: ['./header.css'],
 })
-export class HeaderComponent { }
+export class HeaderComponent {
+  protected readonly styles = headerStyles;
+}
