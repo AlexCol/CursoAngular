@@ -3,3 +3,11 @@ para poder funcionar, instalar pacote angular:
 
 criar novo projeto:
 ng new <project-name>
+
+//////
+
+//para criar componentes
+ng generate
+
+--para gerar componente 'user' (por padrão ele inicia na pasta 'app')
+ng g c ../components/user

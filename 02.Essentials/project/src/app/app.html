@@ -1,7 +1,11 @@
 <div class="min-h-screen bg-slate-50 text-slate-900">
   <app-header />
 
-  <main id="inicio" class="mx-auto max-w-6xl px-6 py-16">
-    Aqui fica o conteudo.
+  <main [class]="styles.main">
+    <ul [class]="styles.users">
+      <li>
+        <app-user />
+      </li>
+    </ul>
   </main>
 </div>
