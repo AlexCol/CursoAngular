@@ -1,6 +1,6 @@
-<div [class]="styles.div">
-  <button [class]="styles.button">
-    <img [class]="styles.img" />
-    <span [class]="styles.span">NAME</span>
+<div [className]="styles.div">
+  <button [className]="styles.button" (click)="onSelectUser()">
+    <img [className]="styles.img" [src]="userAvatarPath" [alt]="userData.name" />
+    <span [className]="styles.span">{{ userData.name }}</span>
   </button>
 </div>
