@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../components/header';
-import { UserComponent } from "../components/user/user";
+import { UserComponent } from '../components/user/user';
 import { appStyles } from './app.styles';
 
 @Component({

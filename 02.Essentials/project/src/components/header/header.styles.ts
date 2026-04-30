@@ -1,5 +1,6 @@
 export const headerStyles = {
-  container: 'mx-auto mb-8 flex w-[90%] max-w-[50rem] flex-col items-center gap-4 rounded-b-[14px] bg-linear-to-b from-[#2d0b52] to-[#44107a] px-6 py-5 text-center shadow-[0_2px_14px_rgba(0,0,0,0.45)] md:px-8 md:py-8',
+  container:
+    'mx-auto mb-8 flex w-[90%] max-w-[50rem] flex-col items-center gap-4 rounded-b-[14px] bg-linear-to-b from-[#2d0b52] to-[#44107a] px-6 py-5 text-center shadow-[0_2px_14px_rgba(0,0,0,0.45)] md:px-8 md:py-8',
   innerContainer: 'flex flex-col items-center gap-1',
   brandText: 'm-0 text-[0.8rem] text-balance text-[#d9c2ef]',
   title: 'm-0 p-0 text-[1.9rem] font-extrabold leading-none tracking-[-0.03em] text-[#e9d8ff] md:text-[2.35rem]',
