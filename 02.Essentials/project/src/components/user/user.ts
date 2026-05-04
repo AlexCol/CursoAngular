@@ -1,5 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
-import { DUMMY_USERS } from './dummy-users';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { userStyles } from './user.styles';
 
 @Component({
@@ -8,22 +7,32 @@ import { userStyles } from './user.styles';
   templateUrl: './user.html',
 })
 export class UserComponent {
-  private currentUserIndex = 1;
-  private selectedUser = signal(DUMMY_USERS[this.currentUserIndex]);
   protected readonly styles = userStyles;
 
-  constructor() {}
+  //! abordagem sem signals
+  @Input({ required: true }) id!: string;
+  @Input({ required: true }) avatar!: string;
+  @Input({ required: true }) name!: string;
+  @Output() select = new EventEmitter<string>();
 
-  //! GETTERS
-  get user() {
-    return computed(() => this.selectedUser())();
-  }
-  get userAvatarPath() {
-    return `users/${this.user.avatar}`;
+  //! abordagem com signals
+  //? signals com input são readonly, ou seja, não podem ser alterados dentro do
+  //? componente, apenas lidos.
+  // id = input.required<string>();
+  // avatar = input.required<string>();
+  // name = input.required<string>();
+  // select = output<string>();
+
+  get imagePath() {
+    return `users/${this.avatar}`; //sem signals
+    //return computed(() => `users/${this.avatar()}`)(); //com signals
   }
 
   //! METHODS
-  public onSelectUser() {}
+  public onSelectUser() {
+    this.select.emit(this.id); //sem signals
+    //this.select.emit(this.id());
+  }
 }
 
 //! com signals
