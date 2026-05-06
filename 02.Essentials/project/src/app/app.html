@@ -3,20 +3,30 @@
 
   <main [class]="styles.main">
     <ul [class]="styles.users">
-      <li>
-        <app-user [user]="users[0]" (select)="onSelectUser($event)" />
-      </li>
-      <li>
-        <app-user [user]="users[1]" (select)="onSelectUser($event)" />
-      </li>
-      <li>
-        <app-user [user]="users[2]" (select)="onSelectUser($event)" />
-      </li>
-      <li>
-        <app-user [user]="users[3]" (select)="onSelectUser($event)" />
-      </li>
+      @for (user of users; track $index) {
+        <!-- padrão angular 17+  -->
+        <li>
+          <app-user [user]="user" (select)="onSelectUser($event)" />
+        </li>
+      }
+
+      <!-- padrão angular 16-  -->
+      <!-- <li *ngFor="let user of users">
+        <app-user [user]="user" (select)="onSelectUser($event)" />
+      </li> -->
     </ul>
 
-    <app-tasks [name]="selectedUser.name" />
+    <!-- padrão angular 17+  -->
+    @if (selectedUser) {
+      <app-tasks [name]="selectedUser.name" />
+    } @else {
+      <p id="fallback">No user selected</p>
+    }
+
+    <!-- padrão angular 16-  -->
+    <!-- <app-tasks *ngIf="selectedUser; else fallback" [name]="selectedUser.name" />
+    <ng-template #fallback>
+      <p id="fallback">No user selected</p>
+    </ng-template> -->
   </main>
 </div>

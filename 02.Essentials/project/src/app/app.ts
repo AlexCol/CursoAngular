@@ -3,6 +3,7 @@ import { HeaderComponent } from '../components/header';
 import { TasksComponent } from '../components/tasks/tasks';
 import { DUMMY_USERS } from '../components/user/dummy-users';
 import { UserComponent } from '../components/user/user';
+import { User } from '../models/User';
 import { appStyles } from './app.styles';
 
 @Component({
@@ -14,10 +15,10 @@ import { appStyles } from './app.styles';
 export class App {
   protected readonly styles = appStyles;
   protected users = DUMMY_USERS;
-  protected selectedUser = this.users[0];
+  protected selectedUser?: User;
 
   onSelectUser(id: string) {
-    if (this.selectedUser.id === id) return;
+    if (this.selectedUser?.id === id) return;
 
     this.selectedUser = this.users.find((user) => user.id === id) ?? this.selectedUser;
   }

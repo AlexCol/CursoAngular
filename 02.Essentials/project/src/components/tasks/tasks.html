@@ -1,1 +1,14 @@
-<h2>{{ name }}</h2>
+<section [class]="styles.container">
+  <header [class]="styles.header">
+    <h2 [class]="styles.title">{{ name }}'s Tasks</h2>
+    <menu [class]="styles.menu">
+      <button [class]="styles.addButton">Add Task</button>
+    </menu>
+  </header>
+
+  <ul [class]="styles.list">
+    <li>Task 1</li>
+    <li>Task 2</li>
+    <li>Task 3</li>
+  </ul>
+</section>
