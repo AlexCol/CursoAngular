@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { Task } from '../../models/Task';
+import { User } from '../../models/User';
 import { TaskComponent } from '../task/task';
+import { DUMMY_TASKS } from './DUMMY_TASKS';
 import { tasksStyles } from './tasks.styles';
 
 @Component({
@@ -11,6 +14,11 @@ import { tasksStyles } from './tasks.styles';
   templateUrl: './tasks.html',
 })
 export class TasksComponent {
-  @Input({ required: true }) name!: string | undefined;
+  @Input({ required: true }) user!: User;
+  tasks: Task[] = DUMMY_TASKS;
   protected readonly styles = tasksStyles;
+
+  get selectedUserTasks() {
+    return this.tasks.filter((task) => task.userId === this.user.id);
+  }
 }

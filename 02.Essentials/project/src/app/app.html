@@ -17,11 +17,13 @@
     </ul>
 
     <!-- padrão angular 17+  -->
-    @if (selectedUser) {
-      <app-tasks [name]="selectedUser.name" />
-    } @else {
-      <p id="fallback" [class]="styles.fallback">No user selected</p>
-    }
+    <div [className]="">
+      @if (selectedUser) {
+        <app-tasks [user]="selectedUser" />
+      } @else {
+        <p id="fallback" [class]="styles.fallback">No user selected</p>
+      }
+    </div>
 
     <!-- padrão angular 16-  -->
     <!-- <app-tasks *ngIf="selectedUser; else fallback" [name]="selectedUser.name" />

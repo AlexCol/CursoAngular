@@ -1,23 +1,16 @@
 <section [class]="styles.container">
   <header [class]="styles.header">
-    <h2 [class]="styles.title">{{ name }}'s Tasks</h2>
+    <h2 [class]="styles.title">{{ user.name }}'s Tasks</h2>
     <menu [class]="styles.menu">
       <button [class]="styles.addButton">Add Task</button>
     </menu>
   </header>
 
   <ul [class]="styles.list">
-    <li>
-      <app-task id="1" />
-    </li>
-    <li>
-      <app-task id="2" />
-    </li>
-    <li>
-      <app-task id="3" />
-    </li>
-    <li>
-      <app-task id="4" />
-    </li>
+    @for (task of selectedUserTasks; track $index) {
+      <li>
+        <app-task [id]="task.id" />
+      </li>
+    }
   </ul>
 </section>
