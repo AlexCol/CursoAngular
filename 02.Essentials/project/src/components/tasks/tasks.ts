@@ -5,6 +5,9 @@ import { tasksStyles } from './tasks.styles';
 @Component({
   selector: 'app-tasks',
   imports: [TaskComponent],
+  host: {
+    class: 'block min-h-0 md:h-full',
+  },
   templateUrl: './tasks.html',
 })
 export class TasksComponent {

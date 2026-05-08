@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-slate-50 text-slate-900">
+<div class="flex h-screen flex-col overflow-hidden bg-slate-50 text-slate-900">
   <app-header />
 
   <main [class]="styles.main">
@@ -20,7 +20,7 @@
     @if (selectedUser) {
       <app-tasks [name]="selectedUser.name" />
     } @else {
-      <p id="fallback">No user selected</p>
+      <p id="fallback" [class]="styles.fallback">No user selected</p>
     }
 
     <!-- padrão angular 16-  -->
