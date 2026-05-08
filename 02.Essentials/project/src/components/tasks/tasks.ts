@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
+import { TaskComponent } from '../task/task';
 import { tasksStyles } from './tasks.styles';
 
 @Component({
   selector: 'app-tasks',
-  imports: [],
+  imports: [TaskComponent],
   templateUrl: './tasks.html',
 })
 export class TasksComponent {
