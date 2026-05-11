@@ -1,7 +1,7 @@
 <article [class]="styles.article">
-  <h2 [class]="styles.title">Task {{ id }}</h2>
-  <time [class]="styles.time">Todo</time>
-  <p [class]="styles.summary">Summary</p>
+  <h2 [class]="styles.title">Task {{ task.title }}</h2>
+  <time [class]="styles.time">{{ task.dueDate }}</time>
+  <p [class]="styles.summary">{{ task.summary }}</p>
   <p [class]="styles.actions">
     <button type="button" [class]="styles.button">Complete</button>
   </p>

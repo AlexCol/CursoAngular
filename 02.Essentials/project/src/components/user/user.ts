@@ -15,6 +15,7 @@ export class UserComponent {
   // @Input({ required: true }) avatar!: string;
   // @Input({ required: true }) name!: string;
   @Input({ required: true }) user!: User;
+  @Input({ required: true }) selected!: Boolean;
   @Output() select = new EventEmitter<string>();
 
   //! abordagem com signals
@@ -23,6 +24,7 @@ export class UserComponent {
   // id = input.required<string>();
   // avatar = input.required<string>();
   // name = input.required<string>();
+  // selected = input.required<boolean>();
   // select = output<string>();
 
   get imagePath() {

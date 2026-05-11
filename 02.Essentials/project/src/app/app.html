@@ -6,7 +6,11 @@
       @for (user of users; track $index) {
         <!-- padrão angular 17+  -->
         <li>
-          <app-user [user]="user" (select)="onSelectUser($event)" />
+          <app-user
+            [user]="user"
+            [selected]="user.id === selectedUser?.id"
+            (select)="onSelectUser($event)"
+          />
         </li>
       }
 
