@@ -1,8 +1,12 @@
+@if (newTaskDialogOpen) {
+  <app-new-task (closeDialog)="closeNewTaskDialog()" />
+}
+
 <section [class]="styles.container">
   <header [class]="styles.header">
     <h2 [class]="styles.title">{{ user.name }}'s Tasks</h2>
     <menu [class]="styles.menu">
-      <button [class]="styles.addButton">Add Task</button>
+      <button [class]="styles.addButton" (click)="openNewTaskDialog()">Add Task</button>
     </menu>
   </header>
 

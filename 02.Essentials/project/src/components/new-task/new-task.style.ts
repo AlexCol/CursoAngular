@@ -1,0 +1,2 @@
+const newTaskStyles = {};
+export { newTaskStyles };
