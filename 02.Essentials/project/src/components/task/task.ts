@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task } from '../../models/Task';
 import { taskStyles } from './task.styles';
 
@@ -9,5 +9,11 @@ import { taskStyles } from './task.styles';
 })
 export class TaskComponent {
   @Input({ required: true }) task!: Task;
+  @Output() complete = new EventEmitter<string>();
+
+  onCompleteTask() {
+    this.complete.emit(this.task.id);
+  }
+
   protected readonly styles = taskStyles;
 }
