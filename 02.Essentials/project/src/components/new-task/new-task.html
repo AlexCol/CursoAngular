@@ -1,4 +1,25 @@
-<div>
-  <p>New task</p>
-  <button (click)="onCloseDialog()">Close</button>
-</div>
+<div [class]="styles.backdrop" (click)="onCloseDialog()"></div>
+<dialog open [class]="styles.dialog">
+  <h2 [class]="styles.title">Add Task</h2>
+  <form>
+    <p>
+      <label for="title" [class]="styles.label">Title</label>
+      <input type="text" id="title" name="title" [class]="styles.input" />
+    </p>
+
+    <p>
+      <label for="summary" [class]="styles.label">Summary</label>
+      <textarea id="summary" rows="5" name="summary" [class]="styles.input"></textarea>
+    </p>
+
+    <p>
+      <label for="due-date" [class]="styles.label">Due Date</label>
+      <input type="date" id="due-date" name="due-date" [class]="styles.input" />
+    </p>
+
+    <p [class]="styles.actions">
+      <button type="button" [class]="styles.buttonBase + ' ' + styles.cancelButton" (click)="onCloseDialog()">Cancel</button>
+      <button type="submit" [class]="styles.buttonBase + ' ' + styles.submitButton">Create</button>
+    </p>
+  </form>
+</dialog>

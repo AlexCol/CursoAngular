@@ -20,12 +20,16 @@ export class TasksComponent {
 
   //! PROPERTIES
   tasks: Task[] = DUMMY_TASKS;
+  private newTaskDialogOpen = false;
   protected readonly styles = tasksStyles;
-  newTaskDialogOpen = false;
 
   //! GETTERS
   get selectedUserTasks() {
     return this.tasks.filter((task) => task.userId === this.user.id);
+  }
+
+  get isNewTaskDialogOpen() {
+    return this.newTaskDialogOpen;
   }
 
   //! METHODS

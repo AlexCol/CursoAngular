@@ -7,7 +7,7 @@ import { newTaskStyles } from './new-task.style';
   templateUrl: './new-task.html',
 })
 export class NewTaskComponent {
-  @Output() closeDialog = new EventEmitter();
+  @Output() closeDialog = new EventEmitter<void>();
 
   onCloseDialog() {
     this.closeDialog.emit();
