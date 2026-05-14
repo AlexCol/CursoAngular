@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NewTask } from '../../models/NewTask';
 import { Task } from '../../models/Task';
 import { User } from '../../models/User';
 import { NewTaskComponent } from '../new-task/new-task';
@@ -44,4 +45,19 @@ export class TasksComponent {
   closeNewTaskDialog = () => {
     this.newTaskDialogOpen = false;
   };
+
+  createTask(newTask: NewTask) {
+    const nextId = Math.max(...this.tasks.map((task) => +task.id.replace('t', '')), 0) + 1;
+
+    const taskToAdd: Task = {
+      id: `t${nextId}`,
+      userId: this.user.id,
+      title: newTask.title,
+      summary: newTask.summary,
+      dueDate: newTask.dueDate,
+    };
+
+    this.tasks.unshift(taskToAdd);
+    this.closeNewTaskDialog();
+  }
 }

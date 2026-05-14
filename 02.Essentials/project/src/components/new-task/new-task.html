@@ -1,24 +1,48 @@
 <div [class]="styles.backdrop" (click)="onCloseDialog()"></div>
 <dialog open [class]="styles.dialog">
   <h2 [class]="styles.title">Add Task</h2>
-  <form>
+  <form (ngSubmit)="onSubmit()">
     <p>
       <label for="title" [class]="styles.label">Title</label>
-      <input type="text" id="title" name="title" [class]="styles.input" />
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [class]="styles.input"
+        [(ngModel)]="enteredTitle"
+      />
     </p>
 
     <p>
       <label for="summary" [class]="styles.label">Summary</label>
-      <textarea id="summary" rows="5" name="summary" [class]="styles.input"></textarea>
+      <textarea
+        id="summary"
+        rows="5"
+        name="summary"
+        [class]="styles.input"
+        [(ngModel)]="enteredSummary"
+      ></textarea>
     </p>
 
     <p>
       <label for="due-date" [class]="styles.label">Due Date</label>
-      <input type="date" id="due-date" name="due-date" [class]="styles.input" />
+      <input
+        type="date"
+        id="due-date"
+        name="due-date"
+        [class]="styles.input"
+        [(ngModel)]="enteredDate"
+      />
     </p>
 
     <p [class]="styles.actions">
-      <button type="button" [class]="styles.buttonBase + ' ' + styles.cancelButton" (click)="onCloseDialog()">Cancel</button>
+      <button
+        type="button"
+        [class]="styles.buttonBase + ' ' + styles.cancelButton"
+        (click)="onCloseDialog()"
+      >
+        Cancel
+      </button>
       <button type="submit" [class]="styles.buttonBase + ' ' + styles.submitButton">Create</button>
     </p>
   </form>
