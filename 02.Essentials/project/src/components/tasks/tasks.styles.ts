@@ -1,6 +1,6 @@
 export const tasksStyles = {
   container:
-    'max-h-full overflow-auto scrollbar-stable sidebar-scrollbar-personalizado rounded-[8px] bg-[#3a2c54] p-4 text-[#e9d8ff] min-h-0 h-full',
+    'max-h-full overflow-auto scrollbar-stable sidebar-scrollbar-personalizado bg-[#3a2c54] p-4 text-[#e9d8ff] min-h-0 h-full',
   header: 'mb-8 flex items-start justify-between gap-4',
   title: 'm-0 w-[60%] text-balance text-[0.9rem] md:text-[1.25rem]',
   menu: 'm-0 p-0',

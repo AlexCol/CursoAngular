@@ -1,5 +1,5 @@
 export const taskStyles = {
-  article: 'rounded-[6px] bg-[#bf9ee5] p-4 text-[#25113d]',
+  article: 'bg-[#bf9ee5] p-4 text-[#25113d]',
   title: 'm-0 text-[1.25rem] font-bold',
   summary: 'text-[#3c2c50] text-sm mb-2',
   time: 'text-[#3c2c50] text-sm',

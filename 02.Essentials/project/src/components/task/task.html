@@ -1,8 +1,10 @@
-<article [class]="styles.article">
-  <h2 [class]="styles.title">Task {{ task.title }}</h2>
-  <time [class]="styles.time">{{ task.dueDate }}</time>
-  <p [class]="styles.summary">{{ task.summary }}</p>
-  <p [class]="styles.actions">
-    <button type="button" (click)="onCompleteTask()" [class]="styles.button">Complete</button>
-  </p>
-</article>
+<app-card>
+  <article [class]="styles.article">
+    <h2 [class]="styles.title">Task {{ task.title }}</h2>
+    <time [class]="styles.time">{{ task.dueDate | date: 'fullDate': '': 'en-US' }}</time>
+    <p [class]="styles.summary">{{ task.summary }}</p>
+    <p [class]="styles.actions">
+      <button type="button" (click)="onCompleteTask()" [class]="styles.button">Complete</button>
+    </p>
+  </article>
+</app-card>

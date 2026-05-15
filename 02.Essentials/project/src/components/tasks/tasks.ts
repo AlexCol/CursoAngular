@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { NewTask } from '../../models/NewTask';
 import { Task } from '../../models/Task';
 import { User } from '../../models/User';
+import { CardComponent } from '../card/card';
 import { NewTaskComponent } from '../new-task/new-task';
 import { TaskComponent } from '../task/task';
 import { DUMMY_TASKS } from './dummy-tasks';
@@ -9,7 +10,7 @@ import { tasksStyles } from './tasks.styles';
 
 @Component({
   selector: 'app-tasks',
-  imports: [TaskComponent, NewTaskComponent],
+  imports: [TaskComponent, NewTaskComponent, CardComponent],
   host: {
     class: 'block min-h-0 md:h-full',
   },

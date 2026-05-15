@@ -2,19 +2,21 @@
   <app-new-task (closeDialog)="closeNewTaskDialog()" (createTask)="createTask($event)" />
 }
 
-<section [class]="styles.container">
-  <header [class]="styles.header">
-    <h2 [class]="styles.title">{{ user.name }}'s Tasks</h2>
-    <menu [class]="styles.menu">
-      <button [class]="styles.addButton" (click)="openNewTaskDialog()">Add Task</button>
-    </menu>
-  </header>
+<app-card>
+  <section [class]="styles.container">
+    <header [class]="styles.header">
+      <h2 [class]="styles.title">{{ user.name }}'s Tasks</h2>
+      <menu [class]="styles.menu">
+        <button [class]="styles.addButton" (click)="openNewTaskDialog()">Add Task</button>
+      </menu>
+    </header>
 
-  <ul [class]="styles.list">
-    @for (task of selectedUserTasks; track $index) {
-      <li>
-        <app-task [task]="task" (complete)="onCompleteTask($event)" () />
-      </li>
-    }
-  </ul>
-</section>
+    <ul [class]="styles.list">
+      @for (task of selectedUserTasks; track $index) {
+        <li>
+          <app-task [task]="task" (complete)="onCompleteTask($event)" />
+        </li>
+      }
+    </ul>
+  </section>
+</app-card>
