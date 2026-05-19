@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { NewTask } from '../../models/NewTask';
 import { Task } from '../../models/Task';
 import { User } from '../../models/User';
+import { TasksService } from '../../services/tasks/tasks.service';
 import { CardComponent } from '../card/card';
 import { NewTaskComponent } from '../new-task/new-task';
 import { TaskComponent } from '../task/task';
@@ -17,6 +17,12 @@ import { tasksStyles } from './tasks.styles';
   templateUrl: './tasks.html',
 })
 export class TasksComponent {
+  //! CONSTRUCTOR
+  constructor(private _tasksService: TasksService) {}
+
+  //? outra forma de injeta (sem usar construtor)
+  //private _tasksService: TasksService = inject(TasksService);
+
   //! INPUTS
   @Input({ required: true }) user!: User;
 
@@ -27,7 +33,7 @@ export class TasksComponent {
 
   //! GETTERS
   get selectedUserTasks() {
-    return this.tasks.filter((task) => task.userId === this.user.id);
+    return this._tasksService.getTasksByUserId(this.user.id);
   }
 
   get isNewTaskDialogOpen() {
@@ -35,9 +41,10 @@ export class TasksComponent {
   }
 
   //! METHODS
-  onCompleteTask(taskId: string) {
-    this.tasks = this.tasks.filter((task) => task.id !== taskId);
-  }
+  //! alterada responsabilidade para o 'taskComponent', então removido o metodo daqui
+  // onCompleteTask(taskId: string) {
+  //   this._tasksService.removeTask(taskId);
+  // }
 
   openNewTaskDialog() {
     this.newTaskDialogOpen = true;
@@ -47,18 +54,9 @@ export class TasksComponent {
     this.newTaskDialogOpen = false;
   };
 
-  createTask(newTask: NewTask) {
-    const nextId = Math.max(...this.tasks.map((task) => +task.id.replace('t', '')), 0) + 1;
-
-    const taskToAdd: Task = {
-      id: `t${nextId}`,
-      userId: this.user.id,
-      title: newTask.title,
-      summary: newTask.summary,
-      dueDate: newTask.dueDate,
-    };
-
-    this.tasks.unshift(taskToAdd);
-    this.closeNewTaskDialog();
-  }
+  //! alterada responsabilidade para o 'newTaskComponent', então removido o metodo daqui
+  // createTask(newTask: NewTask) {
+  //   this._tasksService.addTask(this.user.id, newTask);
+  //   this.closeNewTaskDialog();
+  // }
 }

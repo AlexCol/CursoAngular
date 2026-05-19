@@ -1,8 +1,10 @@
+import { Injectable } from '@angular/core';
+import { DUMMY_TASKS } from '../../components/tasks/dummy-tasks';
 import { NewTask } from '../../models/NewTask';
 import { Task } from '../../models/Task';
-import { DUMMY_TASKS } from './dummy-tasks';
 
-export default class TasksService {
+@Injectable({ providedIn: 'root' })
+export class TasksService {
   private tasks: Task[] = DUMMY_TASKS;
 
   //! METHODS

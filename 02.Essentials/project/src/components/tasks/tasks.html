@@ -1,5 +1,5 @@
 @if (isNewTaskDialogOpen) {
-  <app-new-task (closeDialog)="closeNewTaskDialog()" (createTask)="createTask($event)" />
+  <app-new-task [userId]="user.id" (closeDialog)="closeNewTaskDialog()" />
 }
 
 <app-card>
@@ -14,7 +14,7 @@
     <ul [class]="styles.list">
       @for (task of selectedUserTasks; track $index) {
         <li>
-          <app-task [task]="task" (complete)="onCompleteTask($event)" />
+          <app-task [task]="task" />
         </li>
       }
     </ul>
