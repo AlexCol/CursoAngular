@@ -1,0 +1,3 @@
+ignorado,
+pois modules são de versões muito antigas
+e iniciando um projeto novo o dynamic module nem funciona (não tem a importação da dependencia)
