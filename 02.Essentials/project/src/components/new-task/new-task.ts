@@ -15,15 +15,15 @@ export class NewTaskComponent {
   //@Output() createTask = new EventEmitter<NewTask>(); // sem necessidade mais, já que foi adicionado service direto
 
   //! declare properties for two-way binding (without signal)
-  enteredTitle = '';
-  enteredSummary = '';
-  enteredDate = '';
+  enteredTitle = ''; //!lembrar que inputs two-way binding precisam ter a prop name tbm
+  enteredSummary = ''; //!lembrar que inputs two-way binding precisam ter a prop name tbm
+  enteredDate = ''; //!lembrar que inputs two-way binding precisam ter a prop name tbm
 
   //! declare properties for two-way binding (with signal)
   //! o uso com signal no html segue do mesmo jeito, ou seja, [(ngModel)]="enteredTitle"
-  // enteredTitle = signal('');
-  // enteredSummary = signal('');
-  // enteredDate = signal('');
+  // enteredTitle = signal(''); //!lembrar que inputs two-way binding precisam ter a prop name tbm
+  // enteredSummary = signal(''); //!lembrar que inputs two-way binding precisam ter a prop name tbm
+  // enteredDate = signal(''); //!lembrar que inputs two-way binding precisam ter a prop name tbm
 
   //! DI sem construtor
   private _tasksService: TasksService = inject(TasksService);
