@@ -1,6 +1,6 @@
 import { Component, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { InvestmentParams } from '../../models/dtos/investment-params';
+import { InvestmentParamsDto } from '../../models/dtos/investment-params.dto';
 import { userInputStyles } from './user-input.styles';
 
 @Component({
@@ -12,7 +12,7 @@ export class UserInputComponent {
   protected readonly styles = userInputStyles;
 
   //@Output() calculate = new EventEmitter<InvestmentParams>();
-  calculate = output<InvestmentParams>(); //usando signals
+  calculate = output<InvestmentParamsDto>(); //usando signals
 
   enteredInitialInvestment = '0'; //!lembrar que inputs two-way binding precisam ter a prop name tbm
   enteredAnnualInvestment = '0'; //!lembrar que inputs two-way binding precisam ter a prop name tbm
@@ -30,7 +30,7 @@ export class UserInputComponent {
       return;
     }
 
-    const investmentParams: InvestmentParams = {
+    const investmentParams: InvestmentParamsDto = {
       initialInvestment: +this.enteredInitialInvestment,
       annualInvestment: +this.enteredAnnualInvestment,
       expectedReturn: +this.enteredExpectedReturn,

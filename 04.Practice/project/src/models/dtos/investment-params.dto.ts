@@ -1,4 +1,4 @@
-export type InvestmentParams = {
+export type InvestmentParamsDto = {
   initialInvestment: number;
   duration: number;
   expectedReturn: number;

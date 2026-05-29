@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { InvestmentParams } from '../models/dtos/investment-params';
+import { InvestmentParamsDto } from '../models/dtos/investment-params.dto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InvestmentCalculatorService {
-  calculateInvestment(params: InvestmentParams) {
+  calculateInvestment(params: InvestmentParamsDto) {
     const { initialInvestment, duration, expectedReturn, annualInvestment } = params;
     const annualData = [];
     let investmentValue = initialInvestment;
