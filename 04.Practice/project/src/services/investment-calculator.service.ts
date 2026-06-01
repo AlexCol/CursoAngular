@@ -5,9 +5,9 @@ import { InvestmentParamsDto } from '../models/dtos/investment-params.dto';
   providedIn: 'root',
 })
 export class InvestmentCalculatorService {
-  calculateInvestment(params: InvestmentParamsDto) {
+  calculateInvestment(params: InvestmentParamsDto): AnnualInvestmentDataDto[] {
     const { initialInvestment, duration, expectedReturn, annualInvestment } = params;
-    const annualData = [];
+    const annualData: AnnualInvestmentDataDto[] = [];
     let investmentValue = initialInvestment;
 
     for (let year = 1; year <= duration; year++) {

@@ -1,4 +1,5 @@
 <div [class]="styles.container">
   <app-header />
   <app-user-input (calculate)="onCalculateInvestment($event)" />
+  <app-investment-results [results]="this.investmentResults" />
 </div>

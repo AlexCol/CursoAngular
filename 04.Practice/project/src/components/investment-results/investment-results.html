@@ -1,0 +1,40 @@
+<div [class]="styles.container">
+  @if (!results().length) {
+    <p [class]="styles.emptyState">Please enter some values and press "Calculate".</p>
+  } @else {
+    <div [class]="styles.tableWrapper">
+      <table [class]="styles.table">
+        <thead [class]="styles.head">
+          <tr>
+            <th [class]="styles.headerCell">Year</th>
+            <th [class]="styles.headerCell">Investment Value</th>
+            <th [class]="styles.headerCell">Interest (Year)</th>
+            <th [class]="styles.headerCell">Total Interest</th>
+            <th [class]="styles.headerCell">Invested Capital</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (result of results(); track $index) {
+            <tr [class]="styles.bodyRow">
+              <td [class]="styles.yearCell">{{ result.year }}</td>
+              <td [class]="styles.bodyCell">{{ result.valueEndOfYear | currency }}</td>
+              <td [class]="styles.bodyCell">{{ result.interest | currency }}</td>
+              <td [class]="styles.bodyCell">{{ result.totalInterest | currency }}</td>
+              <td [class]="styles.bodyCell">{{ result.totalAmountInvested | currency }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
+
+<!-- type AnnualInvestmentDataDto = {
+  year: number;
+  interest: number;
+  valueEndOfYear: number;
+  annualInvestment: number;
+  totalInterest: number;
+  totalAmountInvested: number;
+}; -->
