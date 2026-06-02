@@ -2,7 +2,7 @@ export const userInputStyles = {
   form: `
     m-auto
     w-[92%]
-    max-w-150
+    max-w-5xl
     p-6
     rounded-md
     bg-linear-to-b from-teal-700 to-emerald-600
