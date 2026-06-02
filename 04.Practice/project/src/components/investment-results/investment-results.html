@@ -1,5 +1,5 @@
 <div [class]="styles.container">
-  @if (!results().length) {
+  @if (!results.length) {
     <p [class]="styles.emptyState">Please enter some values and press "Calculate".</p>
   } @else {
     <div [class]="styles.tableWrapper">
@@ -15,7 +15,7 @@
         </thead>
 
         <tbody>
-          @for (result of results(); track $index) {
+          @for (result of results; track $index) {
             <tr [class]="styles.bodyRow">
               <td [class]="styles.yearCell">{{ result.year }}</td>
               <td [class]="styles.bodyCell">{{ result.valueEndOfYear | currency }}</td>

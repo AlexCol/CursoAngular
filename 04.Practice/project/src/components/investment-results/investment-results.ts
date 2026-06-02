@@ -1,5 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component } from '@angular/core';
+import { InvestmentCalculatorService } from '../../services/investment-calculator.service';
 import { investmentResultsStyles } from './investment-results.styles';
 
 @Component({
@@ -8,7 +9,13 @@ import { investmentResultsStyles } from './investment-results.styles';
   templateUrl: './investment-results.html',
 })
 export class InvestmentResultsComponent {
-  results = input.required<AnnualInvestmentDataDto[]>();
+  //results = input.required<AnnualInvestmentDataDto[]>();
+  constructor(private _service: InvestmentCalculatorService) {}
+  //private _service = inject(InvestmentCalculatorService); //outra forma de injetar o service, usando a função inject, sem precisar do constructor, mas é mais comum usar o constructor para injetar os services
 
   protected readonly styles = investmentResultsStyles;
+
+  get results() {
+    return this._service.investmentResults;
+  }
 }

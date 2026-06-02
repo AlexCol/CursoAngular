@@ -1,6 +1,7 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InvestmentParamsDto } from '../../models/dtos/investment-params.dto';
+import { InvestmentCalculatorService } from '../../services/investment-calculator.service';
 import { userInputStyles } from './user-input.styles';
 
 @Component({
@@ -10,9 +11,11 @@ import { userInputStyles } from './user-input.styles';
 })
 export class UserInputComponent {
   protected readonly styles = userInputStyles;
+  constructor(private _service: InvestmentCalculatorService) {}
+  //private _service = inject(InvestmentCalculatorService); //outra forma de injetar o service, usando a função inject, sem precisar do constructor, mas é mais comum usar o constructor para injetar os services
 
   //@Output() calculate = new EventEmitter<InvestmentParams>();
-  calculate = output<InvestmentParamsDto>(); //usando signals
+  //calculate = output<InvestmentParamsDto>(); //usando signals
 
   /*
   enteredInitialInvestment = '0'; //!lembrar que inputs two-way binding precisam ter a prop name tbm
@@ -42,7 +45,8 @@ export class UserInputComponent {
       expectedReturn: +this.enteredExpectedReturn(),
       duration: +this.enteredYears(),
     };
-    this.calculate.emit(investmentParams);
+    //this.calculate.emit(investmentParams);
+    this._service.calculateInvestment(investmentParams);
 
     this.resetForm();
   }
