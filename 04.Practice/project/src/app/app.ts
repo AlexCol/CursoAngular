@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { HeaderComponent } from '../components/header/header';
 import { InvestmentResultsComponent } from '../components/investment-results/investment-results';
 import { UserInputComponent } from '../components/user-input/user-input';
@@ -14,11 +14,11 @@ import { AppStyles } from './app.styles';
 export class App {
   constructor(private _service: InvestmentCalculatorService) {}
   protected styles = AppStyles;
-  protected investmentResults: AnnualInvestmentDataDto[] = [];
+  protected investmentResults = signal<AnnualInvestmentDataDto[]>([]);
 
   onCalculateInvestment(event: InvestmentParamsDto) {
     console.log('Received investment parameters:', event);
     const calculatedInvestment = this._service.calculateInvestment(event);
-    this.investmentResults = calculatedInvestment;
+    this.investmentResults.set(calculatedInvestment);
   }
 }
