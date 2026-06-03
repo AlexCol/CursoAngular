@@ -1,14 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { InvestmentParamsDto } from '../models/dtos/investment-params.dto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InvestmentCalculatorService {
-  private _investmentResults: AnnualInvestmentDataDto[] = [];
+  //private _investmentResults: AnnualInvestmentDataDto[] = [];
+  private _investmentResults = signal<AnnualInvestmentDataDto[]>([]);
 
   get investmentResults() {
-    return this._investmentResults;
+    return this._investmentResults();
   }
 
   calculateInvestment(params: InvestmentParamsDto) {
@@ -29,7 +30,7 @@ export class InvestmentCalculatorService {
         totalAmountInvested: initialInvestment + annualInvestment * year,
       });
     }
-    this._investmentResults = annualData;
+    this._investmentResults.set(annualData);
     //return annualData;
   }
 }
