@@ -1,0 +1,50 @@
+<form [class]="styles.form" (ngSubmit)="onSubmit()">
+  <div [class]="styles.inputGroup">
+    <p [class]="styles.field">
+      <label [class]="styles.label" for="initial-investment">Initial Investment</label>
+      <input
+        [class]="styles.input"
+        id="initial-investment"
+        name="initialInvestment"
+        type="number"
+        [(ngModel)]="enteredInitialInvestment"
+      />
+    </p>
+    <p [class]="styles.field">
+      <label [class]="styles.label" for="annual-investment">Annual Investment</label>
+      <input
+        [class]="styles.input"
+        id="annual-investment"
+        name="annualInvestment"
+        type="number"
+        [(ngModel)]="enteredAnnualInvestment"
+      />
+    </p>
+  </div>
+
+  <div [class]="styles.inputGroup">
+    <p [class]="styles.field">
+      <label [class]="styles.label" for="expected-return">Expected Return</label>
+      <input
+        [class]="styles.input"
+        id="expected-return"
+        name="expectedReturn"
+        type="number"
+        [(ngModel)]="enteredExpectedReturn"
+      />
+    </p>
+    <p [class]="styles.field">
+      <label [class]="styles.label" for="duration">Duration</label>
+      <input
+        [class]="styles.input"
+        id="duration"
+        name="duration"
+        type="number"
+        [(ngModel)]="enteredYears"
+      />
+    </p>
+  </div>
+  <p>
+    <button [class]="styles.button" type="submit">Calculate</button>
+  </p>
+</form>
