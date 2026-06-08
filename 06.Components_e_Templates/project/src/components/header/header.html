@@ -1,0 +1,22 @@
+<header [class]="styles.header">
+  <div [class]="styles.logoWrapper">
+    <img [class]="styles.logo" src="logo.png" alt="Website logo, a server" />
+  </div>
+
+  <nav>
+    <ul [class]="styles.navList">
+      <li>
+        <a [class]="styles.navLink" href="/">Home</a>
+      </li>
+      <li>
+        <a [class]="styles.navLink" href="/">Management</a>
+      </li>
+      <li>
+        <button [class]="styles.button + ' group'">
+          <span> Logout </span>
+          <span [class]="styles.buttonIcon"> → </span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>

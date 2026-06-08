@@ -12,4 +12,7 @@ ng generate
 --para gerar componente 'user' (por padrão ele inicia na pasta 'app')
 ng g c ../components/user
 
-//
+//para adicioanr eslint e prettier
+compiar arquivos .prettierrc e eslint.config.mjs
+então
+npm i prettier
