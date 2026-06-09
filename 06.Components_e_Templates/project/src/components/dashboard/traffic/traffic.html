@@ -1,0 +1,18 @@
+<article>
+  <header [class]="styles.itemHeader">
+    <img [class]="styles.itemHeaderImage" src="globe.png" alt="A globe" />
+    <h2 [class]="styles.itemTitle">Traffic</h2>
+  </header>
+  <div [class]="styles.trafficPanel">
+    <p [class]="styles.bodyText">Last 7 days</p>
+
+    <div [class]="styles.chart">
+      @for (dataPoint of dummyTrafficData; track dataPoint.id) {
+        <div
+          [class]="styles.chartBar"
+          [style.height]="(dataPoint.value / maxTraffic) * 100 + '%'"
+        ></div>
+      }
+    </div>
+  </div>
+</article>

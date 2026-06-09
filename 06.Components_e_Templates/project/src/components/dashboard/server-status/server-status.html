@@ -1,0 +1,18 @@
+<article>
+  <header [class]="styles.itemHeader">
+    <img [class]="styles.itemHeaderImage" src="status.png" alt="A signal symbol" />
+    <h2 [class]="styles.itemTitle">Server Status</h2>
+  </header>
+  <div [class]="styles.statusPanel">
+    @if (currentStatus === 'online') {
+      <p [class]="styles.statusLead + ' ' + styles.statusTone.online">Servers are online</p>
+      <p [class]="styles.lastText">All systems are operational.</p>
+    } @else if (currentStatus === 'offline') {
+      <p [class]="styles.statusLead + ' ' + styles.statusTone.offline">Servers are offline</p>
+      <p [class]="styles.lastText">Functionality should be restored soon.</p>
+    } @else {
+      <p [class]="styles.statusLead + ' ' + styles.statusTone.unknown">Server status is unknown</p>
+      <p [class]="styles.lastText">Fetching server status failed.</p>
+    }
+  </div>
+</article>
