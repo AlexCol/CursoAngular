@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TrafficData } from '../../../models/types/TrafficData';
+import { TrafficData } from '../../../../models/types/TrafficData';
 import { dashboardStyles } from '../dashboard.styles';
 
 @Component({

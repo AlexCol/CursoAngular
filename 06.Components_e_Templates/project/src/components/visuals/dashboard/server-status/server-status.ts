@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ServerStatus } from '../../../models/types/ServerStatus';
+import { ServerStatus } from '../../../../models/types/ServerStatus';
 import { dashboardStyles } from '../dashboard.styles';
 
 @Component({

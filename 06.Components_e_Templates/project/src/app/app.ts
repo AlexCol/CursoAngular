@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { DashboardComponent } from '../components/dashboard/dashboard';
-import { HeaderComponent } from '../components/header/header';
+import { DashboardComponent } from '../components/visuals/dashboard/dashboard';
+import { HeaderComponent } from '../components/visuals/header/header';
 import { appStyles } from './app.styles';
 
 @Component({
