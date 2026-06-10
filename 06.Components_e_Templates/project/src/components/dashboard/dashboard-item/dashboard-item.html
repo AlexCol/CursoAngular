@@ -1,0 +1,10 @@
+<div [class]="styles.dashboardItem">
+  <article>
+    <header [class]="styles.itemHeader">
+      <img [class]="styles.itemHeaderImage" [src]="imageSrc().src" [alt]="imageSrc().alt" />
+      <h2 [class]="styles.itemTitle">{{ title() }}</h2>
+    </header>
+
+    <ng-content />
+  </article>
+</div>
