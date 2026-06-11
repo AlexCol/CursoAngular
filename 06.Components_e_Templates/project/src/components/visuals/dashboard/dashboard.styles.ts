@@ -28,8 +28,7 @@ export const dashboardStyles = {
 
   h2: `m-0 text-[0.9rem] uppercase text-[#504e50]`,
   button: `inline-block px-5 py-3 rounded text-base bg-[#691ebe] text-white border-0 hover:bg-[#551b98]`,
-  icon: `inline-block ml-2 transition-transform duration-200 ease-in-out`,
-  iconHoverTransform: `transform translate-x-1`,
+  buttonIcon: `ml-2 inline-block transition-transform duration-200 ease-in-out group-hover:translate-x-1`,
 
   tickets: `flex flex-col gap-6 md:flex-row`,
   ticketsList: `list-none m-0 p-0 w-60`,

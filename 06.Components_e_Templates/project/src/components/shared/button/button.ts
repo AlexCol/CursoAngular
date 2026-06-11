@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-button',
+  selector: 'button[appButton]', //aula 106 sobre isso
   templateUrl: './button.html',
+  host: { class: 'group' },
+  imports: [],
 })
-export class HeaderComponent {
-  protected readonly styles = buttonStyles;
+export class ButtonComponent {
+  //teste = input.required<string>(); //assim ele vira um input obrigatório em button quando informar appButton
+  //! mas nesse componente foi feito com dois ng-content
 }
