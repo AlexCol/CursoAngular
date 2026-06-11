@@ -1,2 +1,1 @@
-const buttonStyles = {} as const;
-export buttonStyles;
+export const buttonStyles = {} as const;
