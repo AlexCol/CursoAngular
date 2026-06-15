@@ -4,7 +4,4 @@ export const headerStyles = {
   logo: `h-full w-full drop-shadow-[0_0_4px_rgba(29,29,29,0.35)]`,
   navList: `m-0 flex list-none items-center gap-8 p-0`,
   navLink: `font-bold text-[#3e3b3e] no-underline transition-colors hover:text-[#77207a]`,
-
-  button: `inline-block cursor-pointer rounded bg-[#691ebe] px-[1.35rem] py-[0.65rem] text-center text-base text-white transition-colors hover:bg-[#551b98]`,
-  buttonIcon: `ml-2 inline-block transition-transform duration-200 ease-in-out group-hover:translate-x-1`,
 } as const;

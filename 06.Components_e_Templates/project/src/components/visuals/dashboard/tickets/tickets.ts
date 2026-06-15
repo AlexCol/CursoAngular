@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { dashboardStyles } from '../dashboard.styles';
 import { NewTicketComponent } from './new-ticket/new-ticket';
+import { ticketsStyles } from './tickets.styles';
 
 @Component({
   selector: 'app-tickets',
@@ -8,5 +8,5 @@ import { NewTicketComponent } from './new-ticket/new-ticket';
   imports: [NewTicketComponent],
 })
 export class TicketsComponent {
-  protected readonly styles = dashboardStyles;
+  protected readonly styles = ticketsStyles;
 }

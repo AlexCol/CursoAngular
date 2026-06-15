@@ -1,4 +1,12 @@
-<span>
-  <ng-content />
-</span>
-<ng-content select="[icon]" />
+<div [class]="styles.button">
+  <span>
+    <ng-content />
+  </span>
+
+  <span [class]="styles.buttonIcon">
+    <ng-content select="[icon]">
+      👀
+      <!-- bloco interno é serve como default caso nenhum ícone seja fornecido -->
+    </ng-content>
+  </span>
+</div>

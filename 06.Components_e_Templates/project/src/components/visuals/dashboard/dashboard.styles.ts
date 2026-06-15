@@ -20,23 +20,15 @@ export const dashboardStyles = {
     unknown: `text-gray-500`,
   },
 
-  trafficPanel: `block w-60 md:w-80`,
-  bodyText: `mb-4 text-[0.9rem] text-[#4f4b53]`,
   lastText: `m-0 text-[0.9rem] text-[#625e67]`,
-  chart: `flex h-40 items-end gap-2 border-b border-[#76737a] px-2`,
-  chartBar: `flex-1 rounded-t-sm bg-linear-to-b from-[#36166f] to-[#ca19a4]`,
 
   h2: `m-0 text-[0.9rem] uppercase text-[#504e50]`,
-  button: `inline-block px-5 py-3 rounded text-base bg-[#691ebe] text-white border-0 hover:bg-[#551b98]`,
-  buttonIcon: `ml-2 inline-block transition-transform duration-200 ease-in-out group-hover:translate-x-1`,
 
   tickets: `flex flex-col gap-6 md:flex-row`,
   ticketsList: `list-none m-0 p-0 w-60`,
   ticketsItem: `my-2`,
   ticketsP: `m-0 text-[#4f4b53]`,
   ticketsH2: `m-0 text-[1.1rem] text-[#38343c]`,
-  newTicket: `w-60`,
-  newTicketLabel: `block text-[0.8rem] font-bold mb-1 text-[#4f4b53]`,
-  input: `w-full p-2 border border-[#ccc] rounded font-inherit text-[0.9rem] text-[#4f4b53]`,
+
   pulsingKeyframes: `@keyframes pulse {0%{opacity:1}50%{opacity:0.5}100%{opacity:1}}`,
 } as const;

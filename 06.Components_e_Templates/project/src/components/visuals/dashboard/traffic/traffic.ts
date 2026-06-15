@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { TrafficData } from '../../../../models/types/TrafficData';
-import { dashboardStyles } from '../dashboard.styles';
+import { trafficStyles } from './traffic.styles';
 
 @Component({
   selector: 'app-traffic',
   templateUrl: './traffic.html',
 })
 export class TrafficComponent {
-  protected readonly styles = dashboardStyles;
+  protected readonly styles = trafficStyles;
 
   dummyTrafficData: TrafficData[] = [
     { id: 'd1', value: 433 },
