@@ -1,10 +1,10 @@
-<div [class]="styles.dashboardItem">
-  <article>
-    <header [class]="styles.itemHeader">
-      <img [class]="styles.itemHeaderImage" [src]="imageSrc().src" [alt]="imageSrc().alt" />
-      <h2 [class]="styles.itemTitle">{{ title() }}</h2>
-    </header>
+<!-- <div [class]="styles.dashboardItem"> adicionado em host pra que não precise de div e a classe seja usada no componente app-dashboard-item -->
+<article>
+  <header [class]="styles.itemHeader">
+    <img [class]="styles.itemHeaderImage" [src]="imageSrc().src" [alt]="imageSrc().alt" />
+    <h2 [class]="styles.itemTitle">{{ title() }}</h2>
+  </header>
 
-    <ng-content />
-  </article>
-</div>
+  <ng-content />
+</article>
+<!-- </div> -->

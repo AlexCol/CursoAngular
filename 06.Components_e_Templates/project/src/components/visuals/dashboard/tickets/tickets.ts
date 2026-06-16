@@ -6,6 +6,7 @@ import { ticketsStyles } from './tickets.styles';
   selector: 'app-tickets',
   templateUrl: './tickets.html',
   imports: [NewTicketComponent],
+  host: { class: ticketsStyles.newTicket },
 })
 export class TicketsComponent {
   protected readonly styles = ticketsStyles;

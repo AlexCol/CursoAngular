@@ -9,6 +9,7 @@ import { TrafficComponent } from './traffic/traffic';
   selector: 'app-dashboard',
   templateUrl: './dashboard.html',
   imports: [ServerStatusComponent, TrafficComponent, TicketsComponent, DashboardItemComponent],
+  host: { class: dashboardStyles.dashboard },
 })
 export class DashboardComponent {
   protected readonly styles = dashboardStyles;
