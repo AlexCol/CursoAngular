@@ -1,5 +1,6 @@
 <!-- <div [class]="styles.statusPanel"> removido e adicionado classe no 'host' do componente-->
-@if (currentStatus === 'online') {
+
+<!-- @if (currentStatus === 'online') { //removido pra usar a de baixo (classes dinamicas)
   <p [class]="styles.statusLead + ' ' + styles.statusTone.online">Servers are online</p>
   <p [class]="styles.lastText">All systems are operational.</p>
 } @else if (currentStatus === 'offline') {
@@ -8,5 +9,25 @@
 } @else {
   <p [class]="styles.statusLead + ' ' + styles.statusTone.unknown">Server status is unknown</p>
   <p [class]="styles.lastText">Fetching server status failed.</p>
-}
+} -->
+
 <!-- </div> -->
+
+<p [class]="[styles.statusLead, styles.statusTone[currentStatus]].join(' ')">
+  @if (currentStatus === 'online') {
+    Servers are online
+  } @else if (currentStatus === 'offline') {
+    Servers are offline
+  } @else {
+    Server status is unknown
+  }
+</p>
+<p [class]="styles.lastText">
+  @if (currentStatus === 'online') {
+    All systems are operational.
+  } @else if (currentStatus === 'offline') {
+    Functionality should be restored soon.
+  } @else {
+    Fetching server status failed.
+  }
+</p>
