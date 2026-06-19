@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { ServerStatus } from '../../../../models/types/ServerStatus';
 import { serverStatusStyles } from './server-status.styles';
 
@@ -11,7 +11,11 @@ import { serverStatusStyles } from './server-status.styles';
 export class ServerStatusComponent implements OnInit, AfterViewInit {
   //!informação do implements OnInit abaixo
   protected readonly styles = serverStatusStyles;
+  private intervalId: number | undefined;
   currentStatusSignal = signal<ServerStatus>('unknown');
+
+  //alternativa 2 para rodar algo 'on destroy' (quando o componente for destruído) -- carregado no onInit o metodo
+  private destroyRef = inject(DestroyRef);
 
   get currentStatus() {
     return this.currentStatusSignal();
@@ -25,17 +29,32 @@ export class ServerStatusComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     console.log('ON INIT');
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       //! pra de fato atualizar a UI, precisa ser usado Signal
       const statuses: ServerStatus[] = ['online', 'offline', 'unknown'];
       const randomIndex = Math.floor(Math.random() * statuses.length);
       this.currentStatusSignal.set(statuses[randomIndex]);
     }, 5000);
+
+    this.destroyRef.onDestroy(() => {
+      console.log('ON DESTROY');
+      if (this.intervalId !== undefined) {
+        clearInterval(this.intervalId);
+      }
+    });
   }
 
   ngAfterViewInit() {
     console.log('AFTER VIEW INIT');
   }
+
+  //alternativa 1 para rodar algo 'on destroy' (quando o componente for destruído)
+  // ngOnDestroy() {
+  //   console.log('ON DESTROY');
+  //   if (this.intervalId !== undefined) {
+  //     clearInterval(this.intervalId);
+  //   }
+  // }
 }
 
 /***************************/

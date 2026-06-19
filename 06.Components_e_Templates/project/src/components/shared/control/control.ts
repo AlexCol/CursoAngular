@@ -16,6 +16,6 @@ export class ControlComponent {
   label = input.required<string>();
 
   onClick() {
-    console.log(this.el.nativeElement);
+    //console.log(this.el.nativeElement);
   }
 }

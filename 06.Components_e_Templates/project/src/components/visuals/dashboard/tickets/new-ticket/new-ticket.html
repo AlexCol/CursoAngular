@@ -1,10 +1,65 @@
-<form [class]="styles.newTicket">
+<!-- usando apenas template variables -->
+<!-- <form [class]="styles.newTicket" (ngSubmit)="onSubmit(titleInput.value, requestInput.value, form)" #form>
   <app-control label="Title">
-    <input [class]="styles.input" id="title" />
+    <input [class]="styles.input" id="title" #titleInput />
   </app-control>
 
   <app-control label="Request">
-    <textarea [class]="styles.input" id="request" rows="3"></textarea>
+    <textarea [class]="styles.input" id="request" #requestInput rows="3"></textarea>
+  </app-control>
+
+  <p>
+    <button appButton>
+      Submit
+      <span ngProjectAs="[icon]">⌲</span>
+    </button>
+  </p>
+</form> -->
+
+<!-- usando two way binding + template variables -->
+<!-- <form [class]="styles.newTicket" (ngSubmit)="onSubmit2(form)" #form>
+  <app-control label="Title">
+    <input [class]="styles.input" id="title" name="title" [(ngModel)]="enteredTitle" />
+  </app-control>
+
+  <app-control label="Request">
+    <textarea [class]="styles.input" id="request" name="request" [(ngModel)]="enteredText" rows="3"></textarea>
+  </app-control>
+
+  <p>
+    <button appButton>
+      Submit
+      <span ngProjectAs="[icon]">⌲</span>
+    </button>
+  </p>
+</form> -->
+
+<!-- usando two way binding apenas  -->
+<!-- <form [class]="styles.newTicket" (ngSubmit)="onSubmit3()" #form>
+  <app-control label="Title">
+    <input [class]="styles.input" id="title" name="title" [(ngModel)]="enteredTitle" />
+  </app-control>
+
+  <app-control label="Request">
+    <textarea [class]="styles.input" id="request" name="request" [(ngModel)]="enteredText" rows="3"></textarea>
+  </app-control>
+
+  <p>
+    <button appButton>
+      Submit
+      <span ngProjectAs="[icon]">⌲</span>
+    </button>
+  </p>
+</form> -->
+
+<!-- pra uso do form capturado pelo @ViewChild -->
+<form [class]="styles.newTicket" (ngSubmit)="onSubmit4()" #form>
+  <app-control label="Title">
+    <input [class]="styles.input" id="title" name="title" [(ngModel)]="enteredTitle" />
+  </app-control>
+
+  <app-control label="Request">
+    <textarea [class]="styles.input" id="request" name="request" [(ngModel)]="enteredText" rows="3"></textarea>
   </app-control>
 
   <p>
