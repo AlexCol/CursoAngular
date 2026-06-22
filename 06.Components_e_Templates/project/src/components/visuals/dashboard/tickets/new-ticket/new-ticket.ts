@@ -1,4 +1,4 @@
-import { Component, ElementRef, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../../../../shared/button/button';
 import { ControlComponent } from '../../../../shared/control/control';
@@ -9,10 +9,10 @@ import { newTicketStyles } from './new-ticket.styles';
   templateUrl: './new-ticket.html',
   imports: [ButtonComponent, ControlComponent, FormsModule],
 })
-export class NewTicketComponent {
+export class NewTicketComponent implements OnInit, AfterViewInit {
   protected readonly styles = newTicketStyles;
-  @ViewChild('form') form2?: ElementRef<HTMLFormElement>; //forma de capturar o #form (elemento com template variable) via ViewChild
-
+  @ViewChild('form') private form2?: ElementRef<HTMLFormElement>; //forma de capturar o #form (elemento com template variable) via ViewChild
+  //private form2 = viewChild<ElementRef<HTMLFormElement>>('form'); //outra forma de capturar o #form (elemento com template variable) via ViewChild, mas usando a nova API do Angular 16
   //pra usar two way binding com signals
   enteredTitle = signal(''); //!lembrar que inputs two-way binding precisam ter a prop name tbm
   enteredText = signal(''); //!lembrar que inputs two-way binding precisam ter a prop name tbm
@@ -49,6 +49,16 @@ export class NewTicketComponent {
     console.log('Title:', this.enteredTitle());
     console.log('Request:', this.enteredText());
 
-    this.form2?.nativeElement.reset();
+    this.form2?.nativeElement.reset(); //usando a forma 1
+    //this.form2()?.nativeElement.reset(); //usando a forma 2
+  }
+
+  ngOnInit(): void {
+    console.log('new ticket oninit');
+    console.log(this.form2); //forma 1
+  }
+  ngAfterViewInit(): void {
+    console.log('new ticket afterviewinit');
+    console.log(this.form2); //forma 2
   }
 }

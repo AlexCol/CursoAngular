@@ -55,11 +55,13 @@
 <!-- pra uso do form capturado pelo @ViewChild -->
 <form [class]="styles.newTicket" (ngSubmit)="onSubmit4()" #form>
   <app-control label="Title">
-    <input [class]="styles.input" id="title" name="title" [(ngModel)]="enteredTitle" />
+    <!-- #input é capturado em Control -->
+    <input [class]="styles.input" id="title" name="title" [(ngModel)]="enteredTitle" #input />
   </app-control>
 
   <app-control label="Request">
-    <textarea [class]="styles.input" id="request" name="request" [(ngModel)]="enteredText" rows="3"></textarea>
+    <!-- #input é capturado em Control -->
+    <textarea [class]="styles.input" id="request" name="request" [(ngModel)]="enteredText" rows="3" #input></textarea>
   </app-control>
 
   <p>
