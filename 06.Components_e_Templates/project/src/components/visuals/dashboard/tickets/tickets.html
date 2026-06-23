@@ -1,3 +1,20 @@
-<!-- <div [class]="styles.newTicket"> -->
-<app-new-ticket />
-<!-- </div> -->
+<div [class]="styles.layout">
+  <div [class]="styles.ticketsListWrapper">
+    <ul [class]="styles.ticketsList">
+      @for (ticket of tickets; track $index) {
+        <li [class]="styles.ticketItem">
+          <app-ticket [ticket]="ticket" (closeEvent)="onCloseTicket($event)" />
+          <!-- {{ $first ? 'First' : $last ? 'Last' : 'Middle' }} -->
+          <!-- {{ $count }} -->
+          <!-- {{ $index + 1 }} - {{ ticket.title }} -->
+        </li>
+      } @empty {
+        <li [class]="styles.emptyState">No tickets found</li>
+      }
+    </ul>
+  </div>
+
+  <div [class]="styles.newTicket">
+    <app-new-ticket (addTicket)="onAddTicket($event)" />
+  </div>
+</div>

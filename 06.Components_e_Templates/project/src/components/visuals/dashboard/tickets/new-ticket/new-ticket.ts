@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnInit, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, output, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NewTicket } from '../../../../../models/types/NewTicket';
 import { ButtonComponent } from '../../../../shared/button/button';
 import { ControlComponent } from '../../../../shared/control/control';
 import { newTicketStyles } from './new-ticket.styles';
@@ -16,6 +17,9 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
   //pra usar two way binding com signals
   enteredTitle = signal(''); //!lembrar que inputs two-way binding precisam ter a prop name tbm
   enteredText = signal(''); //!lembrar que inputs two-way binding precisam ter a prop name tbm
+
+  //@Output() addTicket = new EventEmitter<{title: string; request: string}>();
+  addTicket = output<NewTicket>();
 
   //usando template variables (inicia na aula 130)
   onSubmit(title: string, request: string, form: HTMLFormElement) {
@@ -45,9 +49,20 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
 
   //usando form capturado pelo ViewChild, lendo do twowaybinding
   onSubmit4() {
-    console.log('Form submitted');
-    console.log('Title:', this.enteredTitle());
-    console.log('Request:', this.enteredText());
+    // console.log('Form submitted');
+    // console.log('Title:', this.enteredTitle());
+    // console.log('Request:', this.enteredText());
+
+    if (!this.enteredText() || !this.enteredTitle()) {
+      alert('Please fill in both title and request fields.');
+      return;
+    }
+
+    const newTicket = {
+      title: this.enteredTitle(),
+      request: this.enteredText(),
+    };
+    this.addTicket.emit(newTicket);
 
     this.form2?.nativeElement.reset(); //usando a forma 1
     //this.form2()?.nativeElement.reset(); //usando a forma 2

@@ -1,16 +1,42 @@
-<form>
-  <p>
-    <label>Title</label>
-    <input name="title" id="title" />
-  </p>
-  <p>
-    <label>Request</label>
-    <textarea name="request" id="request" rows="3"></textarea>
-  </p>
-  <p>
-    <button>
-      <span> Submit </span>
-      <span class="icon"> ⌲ </span>
+<article [class]="styles.article">
+  <h3 [class]="styles.heading">
+    <div
+      [class]="styles.statusDot + ' ' + (ticket().status === 'open' ? styles.status.open : styles.status.closed)"
+    ></div>
+    <button type="button" [class]="styles.toggleButton">
+      <span [class]="styles.titleText">{{ ticket().title }}</span>
+      <span [class]="styles.iconWrapper">
+        @if (true) {
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            [class]="styles.icon"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+          </svg>
+        } @else {
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" [class]="styles.icon">
+            <path
+              fill-rule="evenodd"
+              d="M11.47 7.72a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 1 1-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 0 1-1.06-1.06l7.5-7.5Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        }
+      </span>
     </button>
-  </p>
-</form>
+  </h3>
+
+  @if (true) {
+    <p [class]="styles.content">{{ ticket().request }}</p>
+
+    @if (true) {
+      <p [class]="styles.actionRow">
+        <button type="button" [class]="styles.actionButton" (click)="closeTicket()">Mark as completed</button>
+      </p>
+    }
+  }
+</article>
