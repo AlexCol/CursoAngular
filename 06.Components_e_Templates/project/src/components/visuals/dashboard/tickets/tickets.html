@@ -3,7 +3,7 @@
     <ul [class]="styles.ticketsList">
       @for (ticket of tickets; track $index) {
         <li [class]="styles.ticketItem">
-          <app-ticket [ticket]="ticket" (closeEvent)="onCloseTicket($event)" />
+          <app-ticket [ticket]="ticket" (closeEvent)="onCloseTicket(ticket.id)" />
           <!-- {{ $first ? 'First' : $last ? 'Last' : 'Middle' }} -->
           <!-- {{ $count }} -->
           <!-- {{ $index + 1 }} - {{ ticket.title }} -->

@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { Ticket } from '../../../../../models/types/Ticket';
 import { ticketStyles } from './ticket.styles';
 
@@ -9,11 +9,21 @@ import { ticketStyles } from './ticket.styles';
 })
 export class TicketComponent {
   protected readonly styles = ticketStyles;
+  private detailsVisibleSig = signal<boolean>(false);
 
   ticket = input.required<Ticket>();
 
-  closeEvent = output<number>();
-  closeTicket() {
-    this.closeEvent.emit(this.ticket().id);
+  get detailsVisible() {
+    return this.detailsVisibleSig();
+  }
+
+  closeEvent = output<void>();
+  onMarkAsCompleted() {
+    this.closeEvent.emit();
+  }
+
+  toggleDetails() {
+    //this.detailsVisibleSig.set(!this.detailsVisibleSig());
+    this.detailsVisibleSig.update((current) => !current);
   }
 }

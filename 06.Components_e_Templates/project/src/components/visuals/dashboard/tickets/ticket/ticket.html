@@ -3,10 +3,10 @@
     <div
       [class]="styles.statusDot + ' ' + (ticket().status === 'open' ? styles.status.open : styles.status.closed)"
     ></div>
-    <button type="button" [class]="styles.toggleButton">
+    <button type="button" [class]="styles.toggleButton" (click)="toggleDetails()">
       <span [class]="styles.titleText">{{ ticket().title }}</span>
       <span [class]="styles.iconWrapper">
-        @if (true) {
+        @if (detailsVisible) {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -30,12 +30,12 @@
     </button>
   </h3>
 
-  @if (true) {
+  @if (detailsVisible) {
     <p [class]="styles.content">{{ ticket().request }}</p>
 
-    @if (true) {
+    @if (ticket().status === 'open') {
       <p [class]="styles.actionRow">
-        <button type="button" [class]="styles.actionButton" (click)="closeTicket()">Mark as completed</button>
+        <button type="button" [class]="styles.actionButton" (click)="onMarkAsCompleted()">Mark as completed</button>
       </p>
     }
   }
