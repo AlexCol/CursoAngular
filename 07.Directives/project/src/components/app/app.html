@@ -4,4 +4,12 @@
   <hr />
 
   <app-auth />
+
+  <!-- form mais moderna de renderização condicional -->
+  <!-- @if (isAdmin()) {
+    <p>Only admin can see this</p>
+  } -->
+
+  <!-- forma mais antiga - deprecated - usando a diretiva ngIf -->
+  <p *ngIf="isAdmin()">Only admin can see this</p>
 </main>
