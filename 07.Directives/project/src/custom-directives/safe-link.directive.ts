@@ -8,7 +8,7 @@ import { Directive, ElementRef, inject, input } from '@angular/core';
   },
 })
 export class SafeLinkDirective {
-  // com isso não precisaria usar o 'event' no metodo, pois teriamos acesso a referencia o elementoHost
+  // forma de ter acesso ao proprio elemento dentro da classe
   private hostElementRef = inject<ElementRef<HTMLAnchorElement>>(ElementRef); // Inject the ElementRef to access the host element (anchor tag)
 
   //queryParam = input(''); // This input property allows passing a query parameter to the directive
