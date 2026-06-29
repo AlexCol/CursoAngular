@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, computed, signal } from '@angular/core';
 import { AuthComponent } from '../auth/auth';
 import { AuthService } from '../auth/auth.service';
@@ -8,7 +7,7 @@ import { LearningResourcesComponent } from '../learning-resources/learning-resou
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [LearningResourcesComponent, AuthComponent, NgIf],
+  imports: [LearningResourcesComponent, AuthComponent],
 })
 export class App {
   protected readonly title = signal('project');
