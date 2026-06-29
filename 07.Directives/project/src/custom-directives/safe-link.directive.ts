@@ -12,7 +12,7 @@ export class SafeLinkDirective {
   private hostElementRef = inject<ElementRef<HTMLAnchorElement>>(ElementRef); // Inject the ElementRef to access the host element (anchor tag)
 
   //queryParam = input(''); // This input property allows passing a query parameter to the directive
-  queryParam = input('', { alias: 'appSafeLink' }); // This input property allows passing a query parameter to the directive with an alias 'appSafeLink'
+  queryParam = input('', { alias: 'appSafeLink' }); // Input com nome customizado (assim o nome do input é o mesmo do selector da diretiva e posso usar: appSafeLink="valor")
 
   constructor() {
     console.log('SafeLinkDirective initialized');
