@@ -6,10 +6,21 @@
   <app-auth />
 
   <!-- form mais moderna de renderização condicional -->
-  @if (isAdmin()) {
+  <!-- @if (isAdmin()) {
     <p>Only admin can see this</p>
-  }
+  } -->
 
   <!-- forma mais antiga - deprecated - usando a diretiva ngIf (precisa dar import em NgIf no componente) -->
   <!-- <p *ngIf="isAdmin()">Only admin can see this</p> -->
+
+  <!-- forma usando a diretiva personalizada appAuth (precisa dar import em AppAuthDirective no componente) -->
+  <!-- usar com ng-template é util caso se tenha multiplos 'filhos', se for um só, pode-se ver abaixo -->
+  <!-- <ng-template appAuth="admin">
+    <p>Only admin can see this</p>
+  </ng-template> -->
+
+  <!-- caso não se deseje usar o ng-template, pode-se usar a diretiva estrutural *appAuth -->
+  <p *appAuth="'admin'" class="protected-content admin">Only admin can see this</p>
+  <p *appAuth="'user'" class="protected-content authenticated">Regular users can see this</p>
+  <p *appAuth="'guest'" class="protected-content unauthenticated">Only guests can see this</p>
 </main>

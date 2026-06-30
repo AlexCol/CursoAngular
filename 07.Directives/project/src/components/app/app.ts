@@ -1,4 +1,5 @@
 import { Component, computed, signal } from '@angular/core';
+import { AuthDirective } from '../../custom-directives/auth.directive';
 import { AuthComponent } from '../auth/auth';
 import { AuthService } from '../auth/auth.service';
 import { LearningResourcesComponent } from '../learning-resources/learning-resources';
@@ -7,7 +8,7 @@ import { LearningResourcesComponent } from '../learning-resources/learning-resou
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',
-  imports: [LearningResourcesComponent, AuthComponent],
+  imports: [LearningResourcesComponent, AuthComponent, AuthDirective],
 })
 export class App {
   protected readonly title = signal('project');

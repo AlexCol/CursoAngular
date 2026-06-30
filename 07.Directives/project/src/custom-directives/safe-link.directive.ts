@@ -1,4 +1,5 @@
 import { Directive, ElementRef, inject, input } from '@angular/core';
+import { LogDirective } from './log.directive';
 
 @Directive({
   selector: 'a[appSafeLink]', // This directive can be applied to anchor tags (<a>) with the attribute 'appSafeLink'
@@ -6,6 +7,7 @@ import { Directive, ElementRef, inject, input } from '@angular/core';
   host: {
     '(click)': 'onConfirmLeavePage($event)', // Listen for click events on the host element and call the onConfirmLeavePage method
   },
+  hostDirectives: [LogDirective], //assim é como se a appLog fosse usada diretamente no componente, sem precisar colocar no html
 })
 export class SafeLinkDirective {
   // forma de ter acesso ao proprio elemento dentro da classe
