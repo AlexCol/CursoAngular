@@ -18,12 +18,7 @@ export class TemperaturePipe implements PipeTransform {
     const inputType = args.length > 0 ? args[0] : 'C';
     const inputPrecision = args.length > 1 ? parseInt(args[1]) : 2;
 
-    let val: number;
-    if (typeof value === 'string') {
-      val = parseFloat(value);
-    } else {
-      val = value;
-    }
+    let val: number = typeof value === 'string' ? parseFloat(value) : value;
 
     if (inputType === 'F') {
       val = val * 1.8 + 32; //converte para Fahrenheit
@@ -33,11 +28,10 @@ export class TemperaturePipe implements PipeTransform {
   }
 
   private argsValidation(args: string[]) {
-    if (args.length > 0 && args[0] !== 'C' && args[0] !== 'F') {
+    if (args.length > 0 && args[0] !== 'C' && args[0] !== 'F')
       throw new Error('Invalid temperature unit. Use "C" or "F".');
-    }
-    if (args.length > 1 && isNaN(parseInt(args[1]))) {
+
+    if (args.length > 1 && isNaN(parseInt(args[1])))
       throw new Error('Invalid precision value. Use a number.');
-    }
   }
 }
