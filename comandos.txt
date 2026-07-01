@@ -16,3 +16,6 @@ ng g c ../components/user
 compiar arquivos .prettierrc e eslint.config.mjs
 então
 npm i prettier
+
+docs
+https://angular.dev/guide/templates
