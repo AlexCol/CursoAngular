@@ -10,6 +10,17 @@ import { Pipe, PipeTransform } from '@angular/core';
   ter ele no entanto, ajuda a não errar o nome do metodo
 */
 export class TemperaturePipe implements PipeTransform {
+  // transform(value: number | string, inputType: string, inputPrecision?: string, ): string {
+  //   this.argsValidation([inputType, inputPrecision || '']);
+
+  //   let val: number = typeof value === 'string' ? parseFloat(value) : value;
+
+  //   if (inputType === 'F') {
+  //     val = val * 1.8 + 32; //converte para Fahrenheit
+  //   }
+
+  //   return ( val.toFixed(inputPrecision ? parseInt(inputPrecision) : 2) + ' °' + inputType );
+  // }
   transform(value: number | string, ...args: string[]) {
     console.log('value', value);
     console.log('args', args);
