@@ -1,4 +1,3 @@
-import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MessagesService } from '../messages.service';
 
@@ -8,11 +7,15 @@ import { MessagesService } from '../messages.service';
   templateUrl: './messages-list.component.html',
   styleUrl: './messages-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush, // observação do funcionamento em messages.component.ts
-  imports: [AsyncPipe],
+  //imports: [AsyncPipe],
 })
 export class MessagesListComponent {
   private messageService = inject(MessagesService);
-  messages$ = this.messageService.message$;
+  get messages() {
+    return this.messageService.allMessages();
+  }
+
+  // messages$ = this.messageService.message$;
 
   // private cdRef = inject(ChangeDetectorRef); //! se não usar signal, precisamos injetar ChangeDetectorRef para forçar a atualização da view
   // private destroyRef = inject(DestroyRef);

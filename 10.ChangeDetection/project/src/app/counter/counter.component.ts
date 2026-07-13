@@ -30,11 +30,11 @@ export class CounterComponent implements OnInit {
     }, 5000);
 
     //! rodando com 'NgZone.runOutsideAngular', não vai chamar o 'change detection' e não vai reavaliar o binding 'debugOutput'
-    this.zone.runOutsideAngular(() => {
-      setTimeout(() => {
-        console.log('Timer expired2');
-      }, 6000);
-    });
+    // this.zone.runOutsideAngular(() => { //comentado por ter configurar para não usar zone.js
+    setTimeout(() => {
+      console.log('Timer expired2');
+    }, 6000);
+    // });
   }
 
   onDecrement() {

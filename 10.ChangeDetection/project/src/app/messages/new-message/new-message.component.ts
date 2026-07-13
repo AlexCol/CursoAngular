@@ -11,7 +11,7 @@ import { MessagesService } from '../messages.service';
 })
 export class NewMessageComponent {
   private messageService = inject(MessagesService);
-  enteredText = signal('');
+  enteredText = signal<string>('');
 
   get debugOutput() {
     console.log('[NewMessage] "debugOutput" binding re-evaluated.');
