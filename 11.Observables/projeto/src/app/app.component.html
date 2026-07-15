@@ -3,9 +3,15 @@
 <p>Working with "Streams of Data".</p>
 
 <p>
-  <button>Click</button>
-
-  <!-- <button (click)="onSubscription()">
-    {{ isSubscribed ? "Unsubscribe" : "Subscribe" }}
-  </button> -->
+  <button (click)="onClick()">Click</button>
 </p>
+
+<p>
+  {{ clickCount() }}
+</p>
+
+<!-- <p>
+  <button (click)="onSubscription()">
+    {{ isSubscribed ? "Unsubscribe" : "Subscribe" }}
+  </button>
+</p> -->
