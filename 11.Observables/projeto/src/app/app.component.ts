@@ -1,6 +1,6 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { Subscription } from 'rxjs';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { interval, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +9,32 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
+
+  private countSubscription: Subscription | null = null;
   clickCount = signal(0);
   clickCount$ = toObservable(this.clickCount); //usar $ é uma conversão de boas práticas para indicar que é um observable
-  interval = signal(0);
+
+  interval$ = interval(1000);
+  intervalCount = toSignal(this.interval$, { initialValue: 0 }); //se criar um signal com observable, ele é 'disposed' automaticamente quando o componente é destruído, então não precisa de unsubscribe, mas se criar um observable com signal, precisa de unsubscribe
+
+  private customIntervalSubscription: Subscription | null = null;
+  customInterval$ = new Observable<number>((subscriber) => {
+    let count = 0;
+    const intervalId = setInterval(() => {
+      console.log('Emitting value:', count);
+      subscriber.next(count++);
+
+      if (count > 5) {
+        console.log('Completing observable');
+        subscriber.complete();
+      }
+    }, 1500);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  });
+  customIntervalCount = signal(0);
 
   constructor() {
     // effect(() => {
@@ -19,25 +42,34 @@ export class AppComponent implements OnInit {
     // });
   }
 
-  private subscription: Subscription | null = null;
   ngOnInit(): void {
+    this.customIntervalSubscription = this.customInterval$.subscribe({
+      next: (value) => {
+        console.log('Custom Interval Count:', value);
+        this.customIntervalCount.set(value);
+      },
+      complete() {
+        console.log('Custom Interval Completed');
+      },
+    });
     this.destroyRef.onDestroy(() => {
-      this.subscription?.unsubscribe();
+      this.countSubscription?.unsubscribe();
+      this.customIntervalSubscription?.unsubscribe();
     });
   }
 
   onClick() {
-    if (this.clickCount() >= 10 && this.subscription) {
-      this.subscription.unsubscribe();
-      this.subscription = null;
+    if (this.clickCount() >= 10 && this.countSubscription) {
+      this.countSubscription.unsubscribe();
+      this.countSubscription = null;
       console.log('Unsubscribed');
       this.clickCount.set(0); // Reset the click count to 0 after unsubscribing
       return;
     }
 
-    if (!this.subscription) {
+    if (!this.countSubscription) {
       // console.log('Recebendo o valor assim que inscrito.');
-      this.subscription = this.clickCount$.subscribe((count) => {
+      this.countSubscription = this.clickCount$.subscribe((count) => {
         console.log('Click count:', count);
       });
     }
