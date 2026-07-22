@@ -1,7 +1,7 @@
 import { inject, Injectable, signal } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { catchError, finalize, map, throwError } from 'rxjs';
+import { catchError, finalize, map, tap, throwError } from 'rxjs';
 import { Place } from './place.model';
 
 @Injectable({
@@ -10,19 +10,27 @@ import { Place } from './place.model';
 export class PlacesService {
   private userPlaces = signal<Place[]>([]);
   private httpCliente = inject(HttpClient);
-
+  private readonly baseUrl = 'http://localhost:3000';
+  private readonly availablePlacesUrl = `${this.baseUrl}/places`;
+  private readonly userPlacesUrl = `${this.baseUrl}/user-places`;
   loadedUserPlaces = this.userPlaces.asReadonly();
 
   loadAvailablePlaces() {
-    return this.fetchPlaces('http://localhost:3000/places');
+    return this.fetchPlaces(this.availablePlacesUrl);
   }
 
   loadUserPlaces() {
-    return this.fetchPlaces('http://localhost:3000/user-places');
+    return this.fetchPlaces(this.userPlacesUrl).pipe(
+      tap({
+        next: (places) => {
+          this.userPlaces.set(places || []);
+        },
+      }),
+    );
   }
 
   addPlaceToUserPlaces(placeId: string) {
-    return this.httpCliente.put(`http://localhost:3000/user-places/`, {
+    return this.httpCliente.put(`${this.userPlacesUrl}/`, {
       placeId,
     });
   }

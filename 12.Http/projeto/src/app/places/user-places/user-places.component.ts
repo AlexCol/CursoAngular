@@ -2,7 +2,6 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 
 import { HttpErrorResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
-import { Place } from '../place.model';
 import { PlacesContainerComponent } from '../places-container/places-container.component';
 import { PlacesComponent } from '../places.component';
 import { PlacesService } from '../places.service';
@@ -18,7 +17,9 @@ export class UserPlacesComponent implements OnInit {
   private placesService = inject(PlacesService);
   private destroyRef = inject(DestroyRef);
   private subscription: Subscription | undefined;
-  places = signal<Place[] | undefined>(undefined);
+
+  // places = signal<Place[] | undefined>(undefined);
+  places = this.placesService.loadedUserPlaces;
   isLoading = signal<boolean>(true);
   error = signal<string | undefined>(undefined);
 
@@ -33,10 +34,11 @@ export class UserPlacesComponent implements OnInit {
   loadUserPlaces() {
     this.subscription = this.placesService.loadUserPlaces().subscribe({
       //recebendo places, pois foi ajustado no map para não vir a response inteira
-      next: (places) => {
-        console.log(places); //¹
-        this.places.set(places);
-      },
+      // next ignorado, pois é alimentado a variavel places no service
+      // next: (places) => {
+      //   console.log(places); //¹
+      //   this.places.set(places);
+      // },
       //complete só é chamado quando a stream é finalizada com sucesso, ou seja, não houve erro
       complete: () => {
         console.log('Request completed');
