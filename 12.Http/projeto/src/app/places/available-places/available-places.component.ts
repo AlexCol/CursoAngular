@@ -1,10 +1,13 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
-import { Subscription } from 'rxjs';
+
+import { HttpErrorResponse } from '@angular/common/http';
+import { finalize, Subscription } from 'rxjs';
+
 import { Place } from '../place.model';
 import { PlacesContainerComponent } from '../places-container/places-container.component';
 import { PlacesComponent } from '../places.component';
-import { PlacesService } from '../places.service';
+import { UserPlacesService } from '../user-places/user-places.service';
+import { AvailablePlacesService } from './available-places.service';
 
 @Component({
   selector: 'app-available-places',
@@ -14,56 +17,87 @@ import { PlacesService } from '../places.service';
   imports: [PlacesComponent, PlacesContainerComponent],
 })
 export class AvailablePlacesComponent implements OnInit {
-  private placesService = inject(PlacesService);
+  //! props injetadas
+  private availablePlacesService = inject(AvailablePlacesService);
+  private userPlacesService = inject(UserPlacesService);
   private destroyRef = inject(DestroyRef);
-  private subscription: Subscription | undefined;
-  places = signal<Place[] | undefined>(undefined);
+
+  //! subscriptions
+  // mantém a referência da requisição atual para que ela possa ser cancelada manualmente antes de iniciar uma nova requisição
+  private subscription?: Subscription;
+
+  //! signals
+  places = signal<Place[]>([]);
   isLoading = signal<boolean>(true);
   error = signal<string | undefined>(undefined);
 
+  //! lifecycle hooks
   ngOnInit() {
     this.loadAvailablePlaces();
 
+    // cancela uma eventual requisição ainda em andamento quando o componente for destruído
     this.destroyRef.onDestroy(() => {
       this.subscription?.unsubscribe();
     });
   }
 
+  //! metodos publicos
   loadAvailablePlaces() {
-    this.subscription = this.placesService.loadAvailablePlaces().subscribe({
-      //recebendo places, pois foi ajustado no map para não vir a response inteira
-      next: (places) => {
-        console.log(places); //¹
-        this.places.set(places);
-      },
-      //complete só é chamado quando a stream é finalizada com sucesso, ou seja, não houve erro
-      complete: () => {
-        console.log('Request completed');
-        this.isLoading.set(false);
-        this.error.set(undefined); //limpando o erro, caso tenha sido setado anteriormente
-      },
-      error: (errorResponse: HttpErrorResponse) => {
-        this.isLoading.set(false);
-        this.error.set(errorResponse.error?.message || 'An error occurred while fetching places.');
-      },
-    });
+    /*
+     * Cancela a requisição anterior, caso ela ainda esteja em andamento.
+     *
+     * No caso do HttpClient, o unsubscribe também tenta abortar
+     * ativamente a requisição HTTP no navegador.
+     *
+     * O cancelamento deve ocorrer antes de redefinir o isLoading,
+     * pois o finalize da requisição anterior também será executado.
+     */
+    this.subscription?.unsubscribe();
+
+    //! reseta estado da tela antes de iniciar uma nova requisição
+    this.isLoading.set(true);
+    this.error.set(undefined);
+
+    this.subscription = this.availablePlacesService
+      .loadAvailablePlaces()
+      .pipe(
+        /*
+         * O finalize é executado quando o observable:
+         * - completa com sucesso;
+         * - termina com erro;
+         * - é cancelado por unsubscribe.
+         */
+        finalize(() => {
+          this.isLoading.set(false);
+        }),
+      )
+      .subscribe({
+        next: (places) => {
+          this.places.set(places);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.error.set(
+            error.error?.message ?? error.message ?? 'An unknown error occurred while loading available places.',
+          );
+        },
+      });
   }
 
   onSelectPlace(selectedPlace: Place) {
-    this.placesService.addPlaceToUserPlaces(selectedPlace.id).subscribe({
-      next: (response) => {
-        console.log('Place added to user places:', response);
-      },
-      error: (errorResponse: HttpErrorResponse) => {
-        console.log('Error adding place to user places:', errorResponse);
-      },
-    });
+    this.userPlacesService.addPlaceToUserPlaces(selectedPlace);
   }
 }
 
 /*
-¹ a resposta pode ser impactada pelo parametro 'observe'
-com observe: 'response', tenho o retorno completo da resposta, incluindo status, headers e body
-com observe: 'body' (ou sem nada), retorna apenas o corpo da resposta, que é o que normalmente queremos.
-com observe: 'event', retorna eventos de progresso da requisição, útil para upload/download de arquivos.
+¹ A resposta pode ser impactada pelo parâmetro `observe`.
+
+Com `observe: 'response'`, o retorno contém a resposta completa,
+incluindo status, headers e body.
+
+Com `observe: 'body'` — ou sem informar `observe` — retorna apenas
+o corpo da resposta, que é o comportamento mais comum.
+
+Com `observe: 'events'`, retorna os eventos relacionados à requisição,
+incluindo eventos de progresso, sendo útil principalmente em uploads
+e downloads de arquivos.
 */

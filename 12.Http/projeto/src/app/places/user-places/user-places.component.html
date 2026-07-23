@@ -7,7 +7,7 @@
     <p class="fallback-text">Error: {{ error() }}</p>
   }
 
-  @if (places()?.length === 0) {
+  @if (places().length === 0 && !isLoading() && !error()) {
     <p class="fallback-text">Unfortunately, no places could be found.</p>
   }
 

@@ -7,11 +7,11 @@
     <p class="fallback-text">Error: {{ error() }}</p>
   }
 
-  @if (places()?.length === 0) {
+  @if (!isLoading() && !error() && places().length === 0) {
     <p class="fallback-text">Unfortunately, no places could be found.</p>
   }
 
-  @if (places()) {
-    <app-places [places]="places()!" (selectPlace)="onSelectPlace($event)" />
+  @if (!isLoading() && !error() && places().length > 0) {
+    <app-places [places]="places()" (selectPlace)="onSelectPlace($event)" />
   }
 </app-places-container>
