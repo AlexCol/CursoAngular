@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 
+import { Place } from '../place.model';
 import { PlacesContainerComponent } from '../places-container/places-container.component';
 import { PlacesComponent } from '../places.component';
 import { UserPlacesService } from './user-places.service';
@@ -28,5 +29,9 @@ export class UserPlacesComponent implements OnInit {
   //! metodos publicos
   loadUserPlaces() {
     this.userPlacesService.loadUserPlaces();
+  }
+
+  onSelectPlace(place: Place) {
+    this.userPlacesService.removeUserPlace(place);
   }
 }

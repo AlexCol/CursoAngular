@@ -3,6 +3,7 @@ import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { finalize, Subscription } from 'rxjs';
 
+import { ErrorService } from '../../shared/error.service';
 import { Place } from '../place.model';
 import { PlacesContainerComponent } from '../places-container/places-container.component';
 import { PlacesComponent } from '../places.component';
@@ -21,6 +22,7 @@ export class AvailablePlacesComponent implements OnInit {
   private availablePlacesService = inject(AvailablePlacesService);
   private userPlacesService = inject(UserPlacesService);
   private destroyRef = inject(DestroyRef);
+  private errorService = inject(ErrorService); //pra ter um service 'global de erros'
 
   //! subscriptions
   // mantém a referência da requisição atual para que ela possa ser cancelada manualmente antes de iniciar uma nova requisição
@@ -76,9 +78,10 @@ export class AvailablePlacesComponent implements OnInit {
           this.places.set(places);
         },
         error: (error: HttpErrorResponse) => {
-          this.error.set(
-            error.error?.message ?? error.message ?? 'An unknown error occurred while loading available places.',
-          );
+          const errorMessage =
+            error.error?.message ?? error.message ?? 'An unknown error occurred while loading available places.';
+          this.error.set(errorMessage);
+          this.errorService.showError(errorMessage);
         },
       });
   }

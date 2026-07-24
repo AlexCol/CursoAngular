@@ -12,6 +12,6 @@
   }
 
   @if (places()) {
-    <app-places [places]="places()!" />
+    <app-places [places]="places()!" (selectPlace)="onSelectPlace($event)" />
   }
 </app-places-container>

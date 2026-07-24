@@ -28,7 +28,6 @@ export class UserPlacesService {
   loadedUserPlaces = this.userPlacesSignal.asReadonly();
   isLoading = this.isLoadingSignal.asReadonly();
   error = this.errorSignal.asReadonly();
-  pendingAdditions = this.pendingAdditionsSignal.asReadonly();
 
   //! metodos publicos
   loadUserPlaces(setLoading = true) {
@@ -100,7 +99,25 @@ export class UserPlacesService {
       });
   }
 
-  removeUserPlace(place: Place) {}
+  removeUserPlace(place: Place) {
+    this.httpClient.delete(`${this.userPlacesUrl}/${place.id}`).subscribe({
+      next: () => {
+        //! atualiza apenas o estado local, evitando uma nova requisição.
+        //! Ideal quando esta aplicação é a única responsável por alterar essa lista.
+        this.userPlacesSignal.update((places) => places.filter((userPlace) => userPlace.id !== place.id));
+
+        //! alternativamente, recarrega a lista a partir da API para garantir
+        //! que o estado local reflita exatamente o estado atual do servidor.
+        //! Útil quando outros usuários ou processos também podem alterar os dados.
+        //this.loadUserPlaces(false);
+      },
+      error: (error: HttpErrorResponse) => {
+        this.errorSignal.set(
+          error.error?.message ?? error.message ?? 'An unknown error occurred while removing the user place.',
+        );
+      },
+    });
+  }
 
   //! metodos privados
   private addPendingAddition(placeId: Place['id']) {
