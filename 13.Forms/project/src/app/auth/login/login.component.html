@@ -4,14 +4,43 @@
   <div class="control-row">
     <div class="control no-margin">
       <label for="email">Email</label>
-      <input id="email" type="email" name="email" ngModel required email />
+      <input id="email" type="email" name="email" ngModel required email #email="ngModel" />
     </div>
 
     <div class="control no-margin">
       <label for="password">Password</label>
-      <input id="password" type="password" name="password" ngModel required minlength="6" />
+      <input id="password" type="password" name="password" ngModel required minlength="6" #password="ngModel" />
     </div>
 
     <button class="button">Login</button>
   </div>
+
+  @if (email.invalid && email.touched && email.dirty) {
+    <p class="control-error">Invalid email address entered.</p>
+  }
+  @if (password.invalid && password.touched && password.dirty) {
+    <p class="control-error">Invalid password entered - must be at least 6 characters long.</p>
+  }
 </form>
+
+<!--
+  Adicionar #nome="ngXX" exporta a diretiva para uma variável local do template.
+
+  Ex.: #email="ngModel" cria uma referência para a instância de NgModel
+  associada ao input, permitindo acessar propriedades como:
+  email.valid, email.invalid, email.touched, email.errors, etc.
+
+  É semelhante a acessar form.controls.email, porém de forma direta
+  dentro do template.
+
+  #email="ngModel" cria uma variável local que referencia a diretiva NgModel
+  daquele input. Por meio dela é possível consultar o estado do controle
+  (valid, invalid, touched, dirty, errors, etc.) diretamente no template.
+
+| Diretiva       | Aplicada em                         | Export (`#x="..."`)       | O que representa     | Principais propriedades                                                                 |
+| -------------- | ----------------------------------- | ------------------------- | -------------------- | --------------------------------------------------------------------------------------- |
+| `ngForm`       | `<form>`                            | `#form="ngForm"`          | O formulário inteiro | `value`, `valid`, `invalid`, `touched`, `dirty`, `submitted`, `controls`, `resetForm()` |
+| `ngModel`      | `<input>`, `<select>`, `<textarea>` | `#email="ngModel"`        | Um único campo       | `value`, `valid`, `invalid`, `touched`, `dirty`, `errors`, `control`, `reset()`         |
+| `ngModelGroup` | `<div>`, `<fieldset>`...            | `#address="ngModelGroup"` | Um grupo de campos   | `value`, `valid`, `invalid`, `controls`, `errors`                                       |
+
+-->
