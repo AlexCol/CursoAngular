@@ -20,7 +20,7 @@ export class LoginComponent {
       this.populateFormDataFromLocalStorage(form);
 
       const sub = form.valueChanges
-        ?.pipe(debounceTime(500)) //serve como um delay, se houver novas alterações no formulário, o debounceTime reinicia a contagem do tempo, e só após 500ms sem alterações, o subscribe é chamado.
+        ?.pipe(debounceTime(500)) //debounceTime serve como um delay, se houver novas alterações no formulário, o debounceTime reinicia a contagem do tempo, e só após 500ms sem alterações, o subscribe é chamado.
         .subscribe({
           next: () => this.saveFormDataToLocalStorage(form),
         });
