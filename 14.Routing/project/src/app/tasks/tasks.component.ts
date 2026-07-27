@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 
 import { TaskComponent } from './task/task.component';
-import { Task } from './task/task.model';
+import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -11,5 +11,9 @@ import { Task } from './task/task.model';
   imports: [TaskComponent],
 })
 export class TasksComponent {
-  userTasks: Task[] = [];
+  //form 1, usando o input da rota (para forma 2 ver UserTasksComponent)
+  private tasksService = inject(TasksService);
+  userId = input.required<string>(); //injetado automaticamente pela rota, pois o nome do input é o mesmo do parâmetro da rota (e temos na config withComponentInputBinding)
+
+  userTasks = computed(() => this.tasksService.allTasks().filter((task) => task.userId === this.userId()));
 }

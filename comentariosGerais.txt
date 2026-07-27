@@ -1,0 +1,12 @@
+/* * SOBRE COMPUTED *
+ * Cria um estado derivado e reativo com base nas signals allTasks e userId.
+ * O computed identifica automaticamente essas dependências e recalcula a lista
+ * somente quando uma delas muda, mantendo o resultado em cache entre as leituras.
+ * Se fosse utilizado um getter comum, o filtro seria executado sempre que
+ * o getter fosse acessado durante a atualização da tela.
+ */
+userTasks = computed(() =>
+  this.tasksService
+    .allTasks()
+    .filter((task) => task.userId === this.userId())
+);
