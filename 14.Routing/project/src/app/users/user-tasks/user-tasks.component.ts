@@ -25,11 +25,21 @@ export class UserTasksComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.activateRoute);
     const sub = this.activateRoute.params.subscribe((params) => {
+      console.log(params['userId']);
       const userId = params['userId'];
       const user = this.usersService.users.find((user) => user.id === userId);
       this._userName = user?.name ?? '';
     });
 
     this.destroyRef.onDestroy(() => sub.unsubscribe());
+
+    //! forma 3, usando snapshot da roda, não gera observables, então não precisa de subscribe
+    //! mas no caso desse projeto, não vale o uso, pois o componente não é remontado, então ngOnInit
+    //! não é reexecutado, o que vai manter o mesmo userId pra sempre...
+    // const snapshot = this.activateRoute.snapshot;
+    // console.log(snapshot);
+    // const userId = snapshot.params['userId'];
+    // const user = this.usersService.users.find((user) => user.id === userId);
+    // this._userName = user?.name ?? '';
   }
 }
