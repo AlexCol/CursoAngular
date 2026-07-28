@@ -14,10 +14,15 @@ export class UserNameResolver implements Resolve<string> {
 ///criando como função
 //criando resolver usado na criação da rota (para não precisar criar a busca do usuário dentro do componente)
 //funções 'resolvers' podem usufruir de injeção de dependência, mas não podem usar lifecycle hooks, nem decorators como @Input, @Output, @ViewChild, etc...
-export const resolveUserName: ResolveFn<string> = async (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+export const resolveUserName: ResolveFn<string> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
   const usersService = inject(UsersService);
   const userId = route.params['userId'];
   const user = usersService.users.find((user) => user.id === userId);
   // console.log('resolveUserName', user?.name);
   return user?.name ?? '';
+};
+
+//resolver para titulo
+export const resolveTitle: ResolveFn<string> = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  return resolveUserName(route, state) + "'s tasks";
 };
