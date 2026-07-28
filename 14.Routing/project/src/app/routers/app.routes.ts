@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { NotFoundComponent } from '../not-found/not-found.component';
 import { NoTaskComponent } from '../tasks/no-task/no-task.component';
 import { UserTasksComponent } from '../users/user-tasks/user-tasks.component';
+import { resolveUserName } from '../users/user-tasks/user-tasks.resolver';
 import { userTasksRoutes } from './user-tasks.routes';
 
 export const routes: Routes = [
@@ -16,6 +17,9 @@ export const routes: Routes = [
     path: 'users/:userId',
     component: UserTasksComponent,
     children: userTasksRoutes,
+    data: { message: 'Hello from the route data!' }, //injetar dados estaticos no componente
+    resolve: { userName: resolveUserName }, //injetar dados dinamicos no componente (usando resolver como função)
+    //resolve: { userName: UserNameResolver }, //injetar dados dinamicos no componente (usando resolver como classe)
   },
   { path: '**', component: NotFoundComponent },
 ];
