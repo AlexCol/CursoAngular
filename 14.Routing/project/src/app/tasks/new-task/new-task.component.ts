@@ -19,8 +19,11 @@ export class NewTaskComponent {
   enteredTitle = signal('');
   enteredSummary = signal('');
   enteredDate = signal('');
+  submited = false; //usado para guard
 
   onSubmit() {
+    this.submited = true;
+
     this.tasksService.addTask(
       {
         title: this.enteredTitle(),

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { canDeactivateGuard } from '../guards/can-deactivate.guard';
 import { NewTaskComponent } from '../tasks/new-task/new-task.component';
 import { TasksComponent } from '../tasks/tasks.component';
 import { resolveUserTasks } from '../tasks/tasks.resolver';
@@ -11,7 +12,11 @@ export const userTasksRoutes: Routes = [
     runGuardsAndResolvers: 'paramsOrQueryParamsChange', //sem isso, o resolver não é reexecutado se apenas quem mudar for a query param (ele muda apenas se mudar a rota 'base')
     resolve: { userTasks: resolveUserTasks },
   },
-  { path: 'tasks/new', component: NewTaskComponent },
+  {
+    path: 'tasks/new',
+    component: NewTaskComponent,
+    canDeactivate: [canDeactivateGuard /*CanDeactivateGuard*/], //! informações sobre guards, ver app.routes.ts
+  },
 ];
 
 /*
