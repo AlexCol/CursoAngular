@@ -9,7 +9,7 @@ export const userTasksRoutes: Routes = [
   {
     path: 'tasks',
     component: TasksComponent,
-    runGuardsAndResolvers: 'paramsOrQueryParamsChange', //sem isso, o resolver não é reexecutado se apenas quem mudar for a query param (ele muda apenas se mudar a rota 'base')
+    runGuardsAndResolvers: 'always', //sem isso, o resolver não é reexecutado se apenas quem mudar for a query param (ele muda apenas se mudar a rota 'base')
     resolve: { userTasks: resolveUserTasks },
   },
   {
