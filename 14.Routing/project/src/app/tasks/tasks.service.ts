@@ -1,7 +1,11 @@
 import { Injectable, signal } from '@angular/core';
 import { Task, type NewTaskData } from './task/task.model';
 
-@Injectable({ providedIn: 'root' })
+// @Injectable({
+//   providedIn: 'root', //acaba sendo loaded eagerly, pois o serviço é injetado em um componente que é lazy loaded
+// })
+
+@Injectable() //sem injectable, o serviço é lazy loaded, mas precisa ser provido em algum módulo ou componente
 export class TasksService {
   private tasks = signal<Task[]>([
     {

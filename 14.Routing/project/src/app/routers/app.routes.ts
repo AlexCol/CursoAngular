@@ -1,11 +1,9 @@
 import { Routes } from '@angular/router';
-
 import { canMatchGuard } from '../guards/can-match.guard';
 import { NotFoundComponent } from '../not-found/not-found.component';
 import { NoTaskComponent } from '../tasks/no-task/no-task.component';
 import { UserTasksComponent } from '../users/user-tasks/user-tasks.component';
 import { resolveTitle, resolveUserName } from '../users/user-tasks/user-tasks.resolver';
-import { userTasksRoutes } from './user-tasks.routes';
 
 export const routes: Routes = [
   //{ path: '', redirectTo: 'tasks', pathMatch: 'full' },
@@ -19,7 +17,9 @@ export const routes: Routes = [
   {
     path: 'users/:userId',
     component: UserTasksComponent,
-    children: userTasksRoutes,
+    //children: userTasksRoutes, //eagerly loaded de todo route group (detalhes em user-tasks.routes.ts)
+    //loadChildren: () => import('./user-tasks.routes').then((module) => module.userTasksRoutes), //lazy loaded de todo route group (detalhes em user-tasks.routes.ts)
+    loadChildren: () => import('./user-tasks.routes').then((module) => module.userTasksRoutesLazy), //lazy loaded de todo route group -- e provendo servicos exclusivos, que são usados ´so nele, assim não são carregados enquanto essa rota em especifico não for chamada
     //canActivate: [canActivateGuard /*CanActivateGuard*/], //diferenças sobre guards, abaixo
     canMatch: [canMatchGuard /*CanMatchGuard*/],
     title: resolveTitle, //pode ser um resolver para apresentar o titulo
