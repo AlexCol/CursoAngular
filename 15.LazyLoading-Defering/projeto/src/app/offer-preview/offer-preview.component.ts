@@ -20,12 +20,10 @@ export class OfferPreviewComponent {
       }
       return ((OFFER_TIME - val) / OFFER_TIME) * 100;
     }),
-    takeUntil(timer((OFFER_TIME + 1) * 1000)),
+    takeUntil(timer((OFFER_TIME + 1) * 1000)), //takeUntil faz com que o observable seja finalizado após OFFER_TIME segundos
     finalize(() => {
       this.offerExpired.set(true);
-    })
+    }),
   );
-  remainingTime = this.timer.pipe(
-    map((val) => Math.round((val / 100) * OFFER_TIME))
-  );
+  remainingTime = this.timer.pipe(map((val) => Math.round((val / 100) * OFFER_TIME)));
 }

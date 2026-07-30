@@ -1,0 +1,4 @@
+alguns usos de lazy loading feitos no projeto pronto da pasta 14
+
+--> procurar '@defer' nesse código
+--> aulas 309,310,311,312 se quiser recapitular
