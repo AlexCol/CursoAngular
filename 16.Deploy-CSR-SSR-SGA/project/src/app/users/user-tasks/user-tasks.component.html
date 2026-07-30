@@ -1,0 +1,17 @@
+<section id="tasks">
+  <header>
+    <h2>{{ userName() }} Tasks</h2>
+    <menu>
+      <!--
+        Rota relativa à rota atual "users/:userId".
+        O Angular mantém automaticamente o userId presente na URL
+        e adiciona "tasks/new" ao caminho.
+        Exemplo: /users/u1 → /users/u1/tasks/new
+      -->
+      <a routerLink="tasks/new">Add Task</a>
+    </menu>
+  </header>
+
+  <!-- <p>Todo ...</p> -->
+  <router-outlet />
+</section>

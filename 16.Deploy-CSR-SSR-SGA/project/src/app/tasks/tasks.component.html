@@ -1,0 +1,13 @@
+<p>
+  <a routerLink="./" [queryParams]="{ order: opositeOrder() }"> Sort {{ orderLabel() }} </a>
+</p>
+
+<ul>
+  @for (task of userTasks(); track task.id) {
+    <li>
+      <app-task [task]="task" />
+    </li>
+  } @empty {
+    <p>There are no tasks yet. Start adding some!</p>
+  }
+</ul>

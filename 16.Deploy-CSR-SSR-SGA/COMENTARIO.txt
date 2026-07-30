@@ -1,0 +1,6 @@
+usado projeto da pasta 14
+
+----
+
+npm run build -> constroi uma SAP (single page application)
+
