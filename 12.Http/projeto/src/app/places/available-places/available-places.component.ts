@@ -1,6 +1,5 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 
-import { HttpErrorResponse } from '@angular/common/http';
 import { finalize, Subscription } from 'rxjs';
 
 import { ErrorService } from '../../shared/error.service';
@@ -77,11 +76,10 @@ export class AvailablePlacesComponent implements OnInit {
         next: (places) => {
           this.places.set(places);
         },
-        error: (error: HttpErrorResponse) => {
-          const errorMessage =
-            error.error?.message ?? error.message ?? 'An unknown error occurred while loading available places.';
-          this.error.set(errorMessage);
-          this.errorService.showError(errorMessage);
+        error: (error: string) => {
+          //string pois o erro foi tradado no catchError do service, e o throwError retorna uma string
+          this.error.set(error);
+          this.errorService.showError(error);
         },
       });
   }
