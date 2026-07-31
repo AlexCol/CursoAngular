@@ -4,6 +4,9 @@ para poder funcionar, instalar pacote angular:
 criar novo projeto:
 ng new <project-name>
 
+se quiser criar projeto com ssr
+ng new <project-name> --ssr //confirmar para tirar a configuração 'prerender: true' pra evitar sustos
+
 //////
 
 //para criar componentes

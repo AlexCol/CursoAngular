@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { canDeactivateGuard } from '../guards/can-deactivate.guard';
 import { NewTaskComponent } from '../tasks/new-task/new-task.component';
-import { resolveUserTasks } from '../tasks/tasks.resolver';
 import { TasksService } from '../tasks/tasks.service';
 
 export const userTasksRoutes: Routes = [
@@ -11,7 +10,7 @@ export const userTasksRoutes: Routes = [
     // component: TasksComponent, //assim é eager loading,
     loadComponent: () => import('../tasks/tasks.component').then((module) => module.TasksComponent), //assim é lazy loading (detalhes abaixo)
     runGuardsAndResolvers: 'always', //sem isso, o resolver não é reexecutado se apenas quem mudar for a query param (ele muda apenas se mudar a rota 'base')
-    resolve: { userTasks: resolveUserTasks },
+    // resolve: { userTasks: resolveUserTasks },
   },
   {
     path: 'tasks/new',
