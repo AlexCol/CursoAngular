@@ -1,5 +1,5 @@
 @if (error()) {
-  <app-error-modal title="An error occurred!" message="Could not fetch places. Please try again later." />
+  <app-error-modal title="An error occurred!" [message]="error()" />
 }
 
 <header>
