@@ -1,0 +1,55 @@
+:host {
+  display: block;
+}
+
+.site-header {
+  min-height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem clamp(1rem, 4vw, 3rem);
+  background: var(--color-surface);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.brand-mark {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--color-red);
+  font-size: 1.25rem;
+  font-style: italic;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 4vw, 2rem);
+}
+
+nav a {
+  color: var(--color-text);
+  transition: color 160ms ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--color-green);
+}
+
+@media (max-width: 480px) {
+  .brand > span:last-child {
+    display: none;
+  }
+}

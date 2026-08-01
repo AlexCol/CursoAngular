@@ -16,9 +16,15 @@ ng generate
 ng g c ../components/user
 
 //para adicioanr eslint e prettier
-compiar arquivos .prettierrc e eslint.config.mjs
+compiar arquivos .prettierrc e eslint.config.mjs (projeto 99)
 então
-npm i prettier
+npm i --save-dev prettier
+
+npm install --save-dev eslint@^9 @eslint/js@^9 typescript-eslint@^8 angular-eslint@^21 eslint-config-prettier eslint-plugin-import eslint-plugin-unused-imports
+
+adicionar comandos:
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
 
 docs
 https://angular.dev/guide/templates
