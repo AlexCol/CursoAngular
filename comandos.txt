@@ -9,6 +9,9 @@ ng new <project-name> --ssr //confirmar para tirar a configuração 'prerender: 
 
 //////
 
+//para gerar o equivalente ao dotenv
+ng generate environments
+
 //para criar componentes
 ng generate
 

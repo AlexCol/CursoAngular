@@ -15,8 +15,6 @@ export class App {
   readonly authService = inject(AuthService);
 
   constructor() {
-    // this.authService.getMe();
-
     effect(() => {
       const isLoading = this.authService.isLoading;
       if (isLoading) {

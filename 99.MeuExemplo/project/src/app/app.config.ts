@@ -1,25 +1,17 @@
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners } from '@angular/core';
-import { provideRouter, withComponentInputBinding, withRouterConfig } from '@angular/router';
-import { apiBaseUrlInterceptor } from '../interceptors/api-base-url.interceptor';
-import { AuthService } from '../services/auth/auth.service';
-import { intectionTokens } from '../services/InectionTokens';
-import { routes } from './app.routes';
+import { ApplicationConfig } from '@angular/core';
+import { httpClientConfig } from '../providers/non-visual/httpClient';
+import { injectionTokens } from '../providers/non-visual/injectionTokens';
+import { appInitializers } from '../providers/non-visual/provideAppInitializer';
+import { provideRouterConfig } from '../providers/non-visual/router';
+import { toastConfig } from '../providers/visual/toast/toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    ...intectionTokens,
-    provideBrowserGlobalErrorListeners(),
-    provideRouter(
-      routes,
-      withComponentInputBinding(), //importante pois variaveis da rota são amarrados a inputs do componente com o mesmo nome (ex: userId)
-      withRouterConfig({
-        paramsInheritanceStrategy: 'always', //importante para que o parâmetro userId da rota pai seja passado para a rota filha (tasks)
-      }),
-    ),
-    provideHttpClient(withInterceptors([apiBaseUrlInterceptor])),
-    provideAppInitializer(() => {
-      return inject(AuthService).getMe();
-    }),
+    ...injectionTokens,
+    //provideBrowserGlobalErrorListeners(),
+    toastConfig,
+    provideRouterConfig,
+    httpClientConfig,
+    ...appInitializers,
   ],
 };
