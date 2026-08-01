@@ -1,1 +1,3 @@
 https://cssloaders.github.io/#circle
+
+https://css-loaders.com/classic/
