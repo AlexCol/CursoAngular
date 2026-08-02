@@ -17,6 +17,13 @@
   text-rendering: optimizeLegibility;
 }
 
+:root[data-theme='dark'] {
+  --color-background: #171717;
+  --color-surface: #262626;
+  --color-text: #f2f2f2;
+  --color-border: #737373;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -30,6 +37,9 @@ body {
 
 body {
   min-height: 100dvh;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition: color 200ms ease, background-color 200ms ease;
 }
 
 button,

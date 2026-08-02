@@ -6,6 +6,15 @@
 
   <nav aria-label="Navegação principal">
     <a routerLink="/home" routerLinkActive="active">Home</a>
+    <button
+      class="theme-toggle"
+      type="button"
+      (click)="themeService.toggle()"
+      [attr.aria-label]="themeService.isDark() ? 'Ativar modo claro' : 'Ativar modo escuro'"
+      [attr.title]="themeService.isDark() ? 'Ativar modo claro' : 'Ativar modo escuro'"
+    >
+      <span aria-hidden="true">{{ themeService.isDark() ? '☀️' : '🌙' }}</span>
+    </button>
     <a routerLink="/auth/login" (click)="authService.logout()">Sair</a>
   </nav>
 </header>

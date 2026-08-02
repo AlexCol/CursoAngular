@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterOutlet } from '@angular/router';
 import { LoaderComponent } from '../components/shared/loader/loader';
 import { AuthService } from '../services/auth/auth.service';
+import { ThemeService } from '../services/theme/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,8 @@ export class App {
   readonly authService = inject(AuthService);
 
   constructor() {
+    inject(ThemeService);
+
     effect(() => {
       const isLoading = this.authService.isLoading;
       if (isLoading) {
