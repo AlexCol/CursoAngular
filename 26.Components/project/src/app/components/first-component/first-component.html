@@ -1,0 +1,8 @@
+<p>first-component works!</p>
+<p>{{ interpolation }}</p>
+<p [style]="dataBingingStyle">This is styled with data binding</p>
+<button (click)="onClick()">Click me to activate an EventBinding</button>
+
+<h1>Two way binding (precisa ter FormsModule importado)</h1>
+<input type="text" [(ngModel)]="twoWayBinding" />
+<p>{{ twoWayBinding }}</p>
