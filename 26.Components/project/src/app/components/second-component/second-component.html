@@ -1,0 +1,26 @@
+<p>second-component works!</p>
+
+<!-- descontinuado, se descomentar, fica com 'erro' -> precisa importar NgIf -->
+<!-- <p *ngIf="showMessage">Mensagem Afetada</p> -->
+
+<p>
+  <button (click)="toggleMessage()">Toggle Message</button>
+</p>
+<p>
+  <button (click)="removeLastItem()">Remove Last Item</button>
+  <button (click)="addItem()">Add Item</button>
+</p>
+
+@if (showMessage) {
+  <p>Mensagem Afetada</p>
+}
+
+<!-- descontinuado, se descomentar, fica com 'erro' -> precisa importar ngFor -->
+<!-- <ul>
+  <li *ngFor="let item of items">{{ item.name }}</li>
+</ul> -->
+<ul>
+  @for (item of items; track item.id) {
+    <li>{{ item.name }}</li>
+  }
+</ul>

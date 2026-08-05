@@ -2,7 +2,11 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'first',
     loadComponent: () => import('./components/first-component/first-component').then((m) => m.FirstComponent),
+  },
+  {
+    path: 'second',
+    loadComponent: () => import('./components/second-component/second-component').then((m) => m.SecondComponent),
   },
 ];
