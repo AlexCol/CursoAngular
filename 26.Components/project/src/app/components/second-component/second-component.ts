@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -37,8 +37,8 @@ export class SecondComponent {
     this._currentColorIndex = (this._currentColorIndex + 1) % this.colors.length;
   }
   /*********************************************************************/
-  selectedTech = signal('Angular');
+  selectedTech = 'Angular';
   selectTech(tech: string) {
-    this.selectedTech.set(tech);
+    this.selectedTech = tech;
   }
 }
