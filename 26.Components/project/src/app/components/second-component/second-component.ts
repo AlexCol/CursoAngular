@@ -1,10 +1,10 @@
-import { NgClass, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-second-component',
-  imports: [FormsModule, NgClass, NgSwitch, NgSwitchCase, NgSwitchDefault],
+  imports: [FormsModule, NgClass],
   templateUrl: './second-component.html',
   styleUrl: './second-component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
