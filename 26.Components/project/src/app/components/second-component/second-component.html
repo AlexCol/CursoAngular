@@ -15,6 +15,8 @@
   <p>Mensagem Afetada</p>
 }
 
+<!-- ---------------------------------------------------- -->
+
 <!-- descontinuado, se descomentar, fica com 'erro' -> precisa importar ngFor -->
 <!-- <ul>
   <li *ngFor="let item of items">{{ item.name }}</li>
@@ -24,3 +26,58 @@
     <li>{{ item.name }}</li>
   }
 </ul>
+
+<!-- ---------------------------------------------------- -->
+
+<button (click)="changeColor()">Change Color</button>
+<p [ngClass]="color">This text changes color with [ngClass] de forma simples.</p>
+<p [class]="color">This text changes color with [class].</p>
+<style>
+  .green {
+    color: green;
+  }
+  .red {
+    color: red;
+  }
+  .blue {
+    color: blue;
+  }
+  .yellow {
+    color: yellow;
+  }
+  .purple {
+    color: purple;
+  }
+</style>
+
+<!-- ---------------------------------------------------- -->
+
+<div>
+  <button type="button" (click)="selectTech('Java')">Java</button>
+  <button type="button" (click)="selectTech('.NET')">.NET</button>
+  <button type="button" (click)="selectTech('Angular')">Angular</button>
+  <button type="button" (click)="selectTech('Unknown')">Unknown</button>
+</div>
+
+<!-- descontinuado, se descomentar, fica com 'erro' -> precisa importar NgSwitch, NgSwitchCase, NgSwitchDefault -->
+<!-- <div [ngSwitch]="selectedTech()">
+  <p *ngSwitchCase="'Java'">You selected Java</p>
+  <p *ngSwitchCase="'.NET'">You selected .NET</p>
+  <p *ngSwitchCase="'Angular'">You selected Angular</p>
+  <p *ngSwitchDefault>You selected Unknown</p>
+</div> -->
+
+@switch (selectedTech()) {
+  @case ('Java') {
+    <p>You selected Java</p>
+  }
+  @case ('.NET') {
+    <p>You selected .NET</p>
+  }
+  @case ('Angular') {
+    <p>You selected Angular</p>
+  }
+  @default {
+    <p>You selected Unknown</p>
+  }
+}
