@@ -9,4 +9,8 @@ export const routes: Routes = [
     path: 'second',
     loadComponent: () => import('./components/second-component/second-component').then((m) => m.SecondComponent),
   },
+  {
+    path: 'third',
+    loadComponent: () => import('./components/third-component/third-component').then((m) => m.ThirdComponent),
+  },
 ];

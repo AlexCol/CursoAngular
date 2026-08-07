@@ -18,4 +18,8 @@ export class App {
   async navigateToSecondComponent() {
     await this.router.navigate(['second']);
   }
+
+  async navigateToThirdComponent() {
+    await this.router.navigate(['third']);
+  }
 }

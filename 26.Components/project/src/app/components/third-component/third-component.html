@@ -1,0 +1,9 @@
+<p>third-component works!</p>
+
+<p>{{ text() | kebabCase }}</p>
+<p>{{ text() | upperCase }}</p>
+<p>{{ text() | kebabCase | upperCase }}</p>
+<p>{{ text() | firstWord }}</p>
+
+<!-- {minIntegerDigits}.{minFractionDigits}-{maxFractionDigits} -->
+<p>{{ '45.45' | number: '1.2-2' }}</p>
