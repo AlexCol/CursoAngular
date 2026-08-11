@@ -1,0 +1,5 @@
+<div>
+  <input type="text" id="message" name="message" [(ngModel)]="message" />
+  <span>Child Message: {{ childMessage() }}</span>
+  <app-child-component [inputMessage]="message()" (childOutput)="onReceivingMessage($event)" />
+</div>

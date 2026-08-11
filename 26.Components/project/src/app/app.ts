@@ -22,4 +22,8 @@ export class App {
   async navigateToThirdComponent() {
     await this.router.navigate(['third']);
   }
+
+  async navigateToForthComponent() {
+    await this.router.navigate(['forth']);
+  }
 }
