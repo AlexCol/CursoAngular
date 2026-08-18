@@ -17,4 +17,9 @@ export const routes: Routes = [
     path: 'forth',
     loadComponent: () => import('./components/forth-component/forth-component').then((m) => m.ForthComponent),
   },
+  {
+    path: 'fifth',
+    loadComponent: () => import('./components/fifth-component/fifth-component').then((m) => m.FifthComponent),
+  },
+
 ];

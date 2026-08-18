@@ -5,7 +5,7 @@ import { Router, RouterOutlet } from '@angular/router';
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrls: ['./app.css'],
 })
 export class App {
   private readonly router = inject(Router);
@@ -25,5 +25,9 @@ export class App {
 
   async navigateToForthComponent() {
     await this.router.navigate(['forth']);
+  }
+
+  async navigateToFifthComponent() {
+    await this.router.navigate(['fifth']);
   }
 }

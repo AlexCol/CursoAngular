@@ -1,0 +1,13 @@
+<h1>Valores do Observable</h1>
+
+<ul>
+  @for (value of values(); track $index) {
+    <li>
+      {{ value }}
+    </li>
+  }
+
+  @if (values().length > 5) {
+    <p>Finalizado observable.</p>
+  }
+</ul>
