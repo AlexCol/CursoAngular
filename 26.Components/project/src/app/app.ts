@@ -11,23 +11,7 @@ export class App {
   private readonly router = inject(Router);
   protected readonly title = signal('project');
 
-  async navigateToFirstComponent() {
-    await this.router.navigate(['first']);
-  }
-
-  async navigateToSecondComponent() {
-    await this.router.navigate(['second']);
-  }
-
-  async navigateToThirdComponent() {
-    await this.router.navigate(['third']);
-  }
-
-  async navigateToForthComponent() {
-    await this.router.navigate(['forth']);
-  }
-
-  async navigateToFifthComponent() {
-    await this.router.navigate(['fifth']);
+  async navigateToComponent(name: string) {
+    await this.router.navigate([name]);
   }
 }
