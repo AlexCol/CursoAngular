@@ -9,5 +9,23 @@
 
   @if (values().length > 5) {
     <p>Finalizado observable.</p>
+
+    <p>Usuários carregados com AsyncPipe:</p>
+    <ul>
+      @for (user of users$ | async; track $index) {
+        <li>
+          {{ user.name }}
+        </li>
+      }
+    </ul>
+
+    <p>Usuários carregados com ToSignal:</p>
+    <ul>
+      @for (user of usersToSignal(); track $index) {
+        <li>
+          {{ user.name }}
+        </li>
+      }
+    </ul>
   }
 </ul>
