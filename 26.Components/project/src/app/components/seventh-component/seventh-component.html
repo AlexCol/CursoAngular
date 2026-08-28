@@ -1,0 +1,17 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+  <h2>Seventh Component Form</h2>
+  <input type="text" placeholder="Enter something" formControlName="firstInput" />
+  @if (!form.controls.firstInput.valid && form.controls.firstInput.touched) {
+    <p class="error">{{ form.controls.firstInput.errors | json }}</p>
+  } @else {
+    <p></p>
+  }
+
+  <input type="text" placeholder="Enter something else" formControlName="secondInput" />
+  @if (!form.controls.secondInput.valid && form.controls.secondInput.touched) {
+    <p class="error">{{ form.controls.secondInput.errors | json }}</p>
+  } @else {
+    <p></p>
+  }
+  <button type="submit">Submit</button>
+</form>

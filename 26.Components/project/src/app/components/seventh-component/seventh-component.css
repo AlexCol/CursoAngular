@@ -1,0 +1,22 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 10px;
+}
+
+p {
+  font-size: 12px;
+  margin-top: 5px;
+  height: 5px;
+}
+
+p.error {
+  color: red;
+}

@@ -25,4 +25,8 @@ export const routes: Routes = [
     path: 'sixth',
     loadComponent: () => import('./components/sixth-component/sixth-component').then((m) => m.SixthComponent),
   },
+  {
+    path: 'seventh',
+    loadComponent: () => import('./components/seventh-component/seventh-component').then((m) => m.SeventhComponent),
+  },
 ];
