@@ -25,7 +25,6 @@ export default defineConfig([
       'unused-imports': unusedImports,
     },
     rules: {
-      'no-console': 'warn',
       eqeqeq: 'error',
       'no-var': 'error',
       'prefer-const': 'error',

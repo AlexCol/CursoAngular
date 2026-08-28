@@ -21,5 +21,8 @@ export const routes: Routes = [
     path: 'fifth',
     loadComponent: () => import('./components/fifth-component/fifth-component').then((m) => m.FifthComponent),
   },
-
+  {
+    path: 'sixth',
+    loadComponent: () => import('./components/sixth-component/sixth-component').then((m) => m.SixthComponent),
+  },
 ];
