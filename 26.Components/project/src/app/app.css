@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: auto;
+  max-width: 70%;
+  min-width: 300px;
+}
+
+.container > * {
+  flex: 0 0 20%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+button {
+  margin-top: 10px;
+  background-color: lightblue;
+  padding: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: deepskyblue;
+}

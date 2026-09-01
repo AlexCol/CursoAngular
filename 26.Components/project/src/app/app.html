@@ -1,11 +1,13 @@
 <h1>App</h1>
-
-<button (click)="navigateToComponent('first')">Navigate to First Component</button>
-<button (click)="navigateToComponent('second')">Navigate to Second Component</button>
-<button (click)="navigateToComponent('third')">Navigate to Third Component</button>
-<button (click)="navigateToComponent('forth')">Navigate to Forth Component</button>
-<button (click)="navigateToComponent('fifth')">Navigate to Fifth Component</button>
-<button (click)="navigateToComponent('sixth')">Navigate to Sixth Component</button>
-<button (click)="navigateToComponent('seventh')">Navigate to Seventh Component</button>
+<div class="container">
+  <button (click)="navigateToComponent('')">Clear</button>
+  <button (click)="navigateToComponent('first')">Navigate to First Component</button>
+  <button (click)="navigateToComponent('second')">Navigate to Second Component</button>
+  <button (click)="navigateToComponent('third')">Navigate to Third Component</button>
+  <button (click)="navigateToComponent('forth')">Navigate to Forth Component</button>
+  <button (click)="navigateToComponent('fifth')">Navigate to Fifth Component</button>
+  <button (click)="navigateToComponent('sixth')">Navigate to Sixth Component</button>
+  <button (click)="navigateToComponent('seventh')">Navigate to Seventh Component</button>
+</div>
 
 <router-outlet />

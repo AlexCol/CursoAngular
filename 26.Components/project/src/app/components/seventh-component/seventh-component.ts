@@ -25,7 +25,10 @@ export class SeventhComponent {
 
   onSubmit() {
     if (this.form.valid) {
+      alert('Form valido');
       this.form.reset();
+    } else {
+      alert('Form invalido');
     }
   }
 }
