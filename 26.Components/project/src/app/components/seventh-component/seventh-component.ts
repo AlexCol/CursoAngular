@@ -11,7 +11,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class SeventhComponent {
   text = signal('');
 
-  form = new FormGroup({
+  testForm = new FormGroup({
     //forma de adicionar validação com objeto
     firstInput: new FormControl('', {
       validators: [Validators.required],
@@ -24,9 +24,10 @@ export class SeventhComponent {
   });
 
   onSubmit() {
-    if (this.form.valid) {
+    if (this.testForm.valid) {
       alert('Form valido');
-      this.form.reset();
+      console.log(this.testForm.value);
+      this.testForm.reset();
     } else {
       alert('Form invalido');
     }

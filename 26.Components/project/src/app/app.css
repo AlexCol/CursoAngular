@@ -15,11 +15,21 @@
 
 button {
   margin-top: 10px;
-  background-color: lightblue;
   padding: 10px;
   cursor: pointer;
+
+  background-color: lightblue;
+  border: 2px solid #126b8c; /* cor normal da borda */
+  border-radius: 5px;
+  box-shadow: 1px 1px 0 #0b4e66; /* dá a sensação de relevo */
 }
 
 button:hover {
   background-color: deepskyblue;
+}
+
+button:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+  border-color: #0b4e66; /* cor da borda enquanto pressiona */
 }
