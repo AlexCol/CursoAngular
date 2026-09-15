@@ -14,4 +14,8 @@ export class App {
   async navigateToComponent(name: string) {
     await this.router.navigate([name]);
   }
+
+  get isInRoot() {
+    return this.router.url === '/';
+  }
 }

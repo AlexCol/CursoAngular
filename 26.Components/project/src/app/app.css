@@ -33,3 +33,37 @@ button:active {
   box-shadow: none;
   border-color: #0b4e66; /* cor da borda enquanto pressiona */
 }
+
+.root-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  padding: 10px;
+  border: 2px solid #126b8c;
+  border-radius: 5px;
+  background-color: lightyellow;
+}
+
+.clear-div {
+  display: flex;
+  justify-content: flex-end;
+}
+.clear-button {
+  margin-top: 5px;
+  padding: 5px;
+
+  background-color: lightcoral;
+  border: 2px solid #8c1212; /* cor normal da borda */
+  box-shadow: 1px 1px 0 #660b0b; /* dá a sensação de relevo */
+}
+
+.clear-button:hover {
+  background-color: red;
+}
+
+.clear-button:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+  border-color: #660b0b; /* cor da borda enquanto pressiona */
+}
