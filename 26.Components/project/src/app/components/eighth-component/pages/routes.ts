@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 import { authGuard } from '../guards/auth-guard';
+import { unAuthGuard } from '../guards/un-auth-guard';
 
 export const eighthRoutes: Route = {
   path: 'eighth',
@@ -13,6 +14,8 @@ export const eighthRoutes: Route = {
     },
     {
       path: 'login',
+      canMatch: [unAuthGuard],
+      pathMatch: 'prefix',
       loadComponent: () => import('./login').then((m) => m.LoginComponent),
     },
     {

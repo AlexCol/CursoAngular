@@ -1,0 +1,33 @@
+<main>
+  <header>
+    <div>
+      <h1>Produtos</h1>
+      <p>Objetos retornados pela API</p>
+    </div>
+
+    <div class="actions">
+      <button type="button" (click)="loadProducts()">Recarregar</button>
+      <button class="logout" type="button" (click)="logout()">Sair</button>
+    </div>
+  </header>
+
+  <p class="total">Total: {{ products.length }} produtos</p>
+
+  <section class="products">
+    @for (product of products; track product.id) {
+      <article>
+        <img [src]="product.image" [alt]="product.title" />
+
+        <div>
+          <h2>{{ product.title }}</h2>
+          <p><strong>ID:</strong> {{ product.id }}</p>
+          <p><strong>Categoria:</strong> {{ product.category }}</p>
+          <p><strong>Preço:</strong> $ {{ product.price }}</p>
+          <p><strong>Descrição:</strong> {{ product.description }}</p>
+        </div>
+      </article>
+    } @empty {
+      <p>Nenhum produto encontrado.</p>
+    }
+  </section>
+</main>
