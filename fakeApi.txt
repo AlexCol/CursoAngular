@@ -2,5 +2,5 @@ https://fakestoreapi.com/
 
 para autenticação
 usuario: mor_2314
-senha :83r5^_
+senha: 83r5^_
 

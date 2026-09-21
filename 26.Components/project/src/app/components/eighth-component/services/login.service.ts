@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { map, Observable, tap } from 'rxjs';
 import { StorageService } from './storage.service';
 
 @Injectable({
@@ -13,17 +14,15 @@ export class AuthService {
   private token: string | null = null;
 
   constructor() {}
-  login(userName: string, password: string): void {
-    this._httpClient.post('auth/login', { username: userName, password: password }).subscribe(
-      (response: any) => {
-        if (response && response.token) {
+  login(userName: string, password: string): Observable<void> {
+    return this._httpClient.post('auth/login', { username: userName, password }).pipe(
+      tap((response: any) => {
+        if (response?.token) {
           this.token = response.token;
           this._storageService.setData(this.tokenStorageKey, response.token);
         }
-      },
-      (error) => {
-        console.error('Login failed', error);
-      },
+      }),
+      map(() => undefined),
     );
   }
 
