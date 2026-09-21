@@ -5,7 +5,7 @@ import { StorageService } from './storage.service';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
+export class AuthService {
   private readonly _storageService = inject(StorageService);
   private readonly _httpClient = inject(HttpClient);
 

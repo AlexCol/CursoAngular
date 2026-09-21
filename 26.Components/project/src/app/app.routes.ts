@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { eighthRoutes } from './components/eighth-component/pages/routes';
 
 export const routes: Routes = [
   {
@@ -29,4 +30,9 @@ export const routes: Routes = [
     path: 'seventh',
     loadComponent: () => import('./components/seventh-component/seventh-component').then((m) => m.SeventhComponent),
   },
+  // {
+  //   path: 'eighth',
+  //   loadComponent: () => import('./components/eighth-component/eighth-component').then((m) => m.EighthComponent),
+  // },
+  eighthRoutes,
 ];
