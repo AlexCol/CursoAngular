@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/login.service';
@@ -7,6 +7,7 @@ import { AuthService } from '../../services/login.service';
   selector: 'app-login',
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [ReactiveFormsModule],
 })
 export class LoginComponent {
